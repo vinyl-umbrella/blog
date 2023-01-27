@@ -1,0 +1,13 @@
+build
+node_modules
+npm-debug.log
+.cache
+.env
+.eslintcache
+dist
+.astro
+.firebase
+.DS_Store
+*.log
+
+TODO.md
