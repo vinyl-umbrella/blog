@@ -1,6 +1,6 @@
-build
-node_modules
-npm-debug.log
+dist/
+node_modules/
+.astro/
 .cache
 .env
 .eslintcache
@@ -10,4 +10,4 @@ dist
 .DS_Store
 *.log
 
-TODO.md
+./TODO.md
