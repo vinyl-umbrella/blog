@@ -1,0 +1,49 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../const';
+
+export interface Props {
+  pageTitle: string;
+  ogDesc: string;
+}
+
+const ogUrl = new URL(
+  Astro.url.pathname,
+  Astro.site ?? 'http://localhost:3000',
+);
+const ogImage =
+  'https://dqd0jw5gvbchn.cloudfront.net/user_background/813528/81352753.png?1667288358';
+const ogTitle = Astro.props.pageTitle + ' - ' + SITE_TITLE;
+
+const { ogDesc } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang='ja'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <meta name='description' content={ogDesc} />
+    <meta property='theme-color' content='#1E293B' />
+    <meta property='og:type' content='website' />
+    <meta property='og:site_name' content={SITE_TITLE} />
+    <meta property='og:url' content={ogUrl} />
+    <meta property='og:title' content={ogTitle} />
+    <meta property='og:description' content={ogDesc} />
+    <meta property='og:image' content={ogImage} />
+    <title>{ogTitle}</title>
+    <link rel='icon' href='/favicon.ico' />
+    <link rel='sitemap' href='/sitemap-index.xml' />
+    <link rel='canonical' href={ogUrl} />
+  </head>
+  <body class='m-0 bg-slate-800 p-0 font-body text-gray-300'>
+    <Header />
+    <div class='mx-auto max-w-5xl py-10 px-8'>
+      <slot />
+    </div>
+    <Footer />
+  </body>
+</html>

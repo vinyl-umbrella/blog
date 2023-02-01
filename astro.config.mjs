@@ -5,10 +5,12 @@ import tailwind from '@astrojs/tailwind'; // https://astro.build/config
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://manuke.site',
   integrations: [mdx(), sitemap(), tailwind()],
   markdown: {
     shikiConfig: {
-      theme: 'nord',
+      theme: 'monokai',
+      wrap: true,
     },
   },
 });

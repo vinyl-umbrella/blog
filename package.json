@@ -1,5 +1,5 @@
 {
-  "name": "@example/basics",
+  "name": "manuke_site",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fmt": "prettier --check ."
+    "fmt": "prettier -w .",
+    "fmt:check": "prettier --check ."
   },
   "dependencies": {
     "@astrojs/mdx": "^0.15.2",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "prettier": "^2.8.3",
-    "prettier-plugin-astro": "^0.8.0"
+    "prettier-plugin-astro": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.2.2"
   }
 }

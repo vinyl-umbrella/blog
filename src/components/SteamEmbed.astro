@@ -1,0 +1,8 @@
+---
+export interface Props {
+  appid: Number;
+}
+const widgetURL = 'https://store.steampowered.com/widget/' + Astro.props.appid;
+---
+
+<iframe src={widgetURL} width='100%' height='190px'></iframe>
