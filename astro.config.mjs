@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind'; // https://astro.build/config
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://manuke.site',
+  site: 'https://manuke.dev',
   integrations: [mdx(), sitemap(), tailwind()],
   markdown: {
     shikiConfig: {

@@ -1,1 +1,1 @@
-export const SITE_TITLE = 'マヌケなエンジニアの書き溜め';
+export const SITE_TITLE = 'マヌケなエンジニアの覚書';
