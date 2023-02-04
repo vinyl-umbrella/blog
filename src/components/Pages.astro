@@ -1,0 +1,19 @@
+---
+type Props = {
+  prev?: string;
+  prevText?: string;
+  next?: string;
+  nextText?: string;
+};
+const {
+  prev,
+  prevText = '前のページ',
+  next,
+  nextText = '次のページ',
+} = Astro.props;
+---
+
+<div class='m-4 flex items-center justify-between'>
+  {prev ? <a href={prev}>&larr;{prevText}</a> : <div />}
+  {next ? <a href={next}>{nextText}&rarr;</a> : <div />}
+</div>

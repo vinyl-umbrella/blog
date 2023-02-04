@@ -1,0 +1,36 @@
+---
+import BlogListLayout from '../../layouts/BlogListLayout.astro';
+import type { GetStaticPathsOptions, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import Pages from '../../components/Pages.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const title = 'Tech Blog';
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  let collection = await getCollection('tech');
+  collection = collection.sort((a, b) => {
+    return a.data.pubDate > b.data.pubDate ? -1 : 1;
+  });
+
+  return paginate(collection, { pageSize: 10 });
+}
+
+const { page } = Astro.props as {
+  page: Page<CollectionEntry<'tech'>>;
+};
+---
+
+<BlogListLayout title={title} ogDesc='学んだ技術などを書きます'>
+  <h1 class='text-4xl font-semibold text-purple-400'>{title}</h1>
+  <div>
+    {
+      page.data.map((data) => (
+        <>
+          <BlogCard href={`/tech/${data.slug}`} frontmatter={data.data} />
+        </>
+      ))
+    }
+    <Pages prev={page.url.prev} next={page.url.next} />
+  </div>
+</BlogListLayout>

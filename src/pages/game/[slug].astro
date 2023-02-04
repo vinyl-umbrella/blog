@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const gameBlogs = await getCollection('game');
+
+  return gameBlogs.map((game) => ({
+    params: { slug: game.slug },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props as {
+  game: CollectionEntry<'game'>;
+};
+
+const { Content } = await game.render();
+---
+
+<Content />

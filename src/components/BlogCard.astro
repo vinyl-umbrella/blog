@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../util/utils';
+
+export interface Props {
+  href: string;
+  frontmatter: CollectionEntry<'game'>['data'];
+}
+
+const { href, frontmatter } = Astro.props;
+---
+
+<div
+  class='my-4 rounded-lg border border-gray-600 bg-gray-700 p-2 shadow-sm hover:brightness-125'
+>
+  <a href={href}>
+    <article class='flex'>
+      <img width='160px' height='120px' />
+      <div class='flex flex-col pl-3'>
+        <h2 class='mb-2 text-xl font-semibold text-gray-200'>
+          {frontmatter.title}
+        </h2>
+        <div class='text-gray-400'>
+          {frontmatter.description}
+        </div>
+        <div class='mb-0 mt-auto text-sm'>
+          {formatDate(frontmatter.pubDate)}
+        </div>
+      </div>
+    </article>
+  </a>
+</div>
