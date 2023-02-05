@@ -5,13 +5,19 @@ import { formatDate } from '../util/utils';
 import MainLayout from './MainLayout.astro';
 
 const { frontmatter } = Astro.props as MarkdownLayoutProps<
-  CollectionEntry<'tech' | 'game'>['data']
+  CollectionEntry<'tech'>['data'] | CollectionEntry<'game'>['data']
 >;
-const { title, pubDate, description, image } = frontmatter;
+const { title, pubDate, description } = frontmatter;
 const d = formatDate(pubDate);
+// prettier-ignore
+const image = frontmatter?.image
+  ? (new URL(frontmatter?.image, Astro.site ?? 'http://localhost:3000')).href
+  : (new URL('/img/me.jpg', Astro.site ?? 'http://localhost:3000',)).href;
+
+console.log(image);
 ---
 
-<MainLayout pageTitle={title} ogDesc={description}>
+<MainLayout pageTitle={title} ogDesc={description} ogImage={image}>
   <div class='mb-8 border-b-2 border-gray-400'>
     <h1 class='my-1 text-3xl font-bold text-gray-100'>
       {title}

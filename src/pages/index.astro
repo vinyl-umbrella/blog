@@ -1,6 +1,7 @@
 ---
 import Card from '../components/Card.astro';
 import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from '@astrojs/image/components';
 
 const title = 'I am Manuke Engineer.';
 ---
@@ -27,10 +28,17 @@ const title = 'I am Manuke Engineer.';
   <div class='my-4 rounded-xl bg-slate-900 p-4 text-gray-200'>
     <h3 class='text-2xl font-semibold text-gray-50'>About Me</h3>
     <div class='flex'>
-      <img src='/img/me.jpg' class='m-2 h-24 w-24 rounded-full' />
+      <Image
+        src='/img/me.jpg'
+        alt='プロフィールアイコン'
+        format='webp'
+        height={32 * 4}
+        width={32 * 4}
+        class='m-2 h-24 w-24 rounded-full'
+      />
       <div class='text-xl'>
         I am a software engineer in Japan🇯🇵.<br />
-        <span class='text-red-400'>❤</span> Web Security, AWS, OCI<br />
+        <span class='text-red-400'>❤</span> Web Security, Firebase, OCI<br />
         <span class='text-red-400'>❤</span> Rogue lite, Rogue like, Metroidvania,
         Indie Games, RPG
       </div>

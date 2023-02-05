@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { formatDate } from '../util/utils';
+import { Image } from '@astrojs/image/components';
 
 export interface Props {
   href: string;
@@ -8,6 +9,7 @@ export interface Props {
 }
 
 const { href, frontmatter } = Astro.props;
+const image = frontmatter.image ?? '/img/me.jpg';
 ---
 
 <div
@@ -15,7 +17,14 @@ const { href, frontmatter } = Astro.props;
 >
   <a href={href}>
     <article class='flex'>
-      <img width='160px' height='120px' />
+      <Image
+        src={image}
+        alt={frontmatter.title}
+        format='webp'
+        height={120}
+        width={160}
+        fit='cover'
+      />
       <div class='flex flex-col pl-3'>
         <h2 class='mb-2 text-xl font-semibold text-gray-200'>
           {frontmatter.title}
