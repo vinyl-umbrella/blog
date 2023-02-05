@@ -9,9 +9,11 @@ const desc = Astro.props.desc ?? '';
 const { href, title } = Astro.props;
 ---
 
-<div class='my-4 rounded-lg border border-gray-600 bg-gray-700 p-2 shadow-sm'>
+<div
+  class='my-4 mx-2 w-full rounded-lg border border-gray-600 bg-gray-700 p-2 shadow-sm hover:brightness-125'
+>
   <a href={href}>
-    <h2 class='mb-4 text-lg font-semibold text-gray-200'>
+    <h2 class='pb-4 text-lg font-semibold text-gray-200'>
       {title}
       <span>&rarr;</span>
     </h2>

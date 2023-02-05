@@ -21,8 +21,11 @@ const { page } = Astro.props as {
 };
 ---
 
-<BlogListLayout title={title} ogDesc='学んだ技術などを書きます'>
-  <h1 class='text-4xl font-semibold text-purple-400'>{title}</h1>
+<BlogListLayout
+  title={title}
+  ogDesc='ITに関する学んだ技術・スキル・直面した課題とその解決法などの記事をまとめています'
+>
+  <h1 class='text-4xl font-semibold text-cyan-400'>{title}</h1>
   <div>
     {
       page.data.map((data) => (
