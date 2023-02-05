@@ -1,15 +1,19 @@
+// https://astro.build/config
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap'; // https://astro.build/config
-import tailwind from '@astrojs/tailwind'; // https://astro.build/config
-import image from '@astrojs/image'; // https://astro.build/config
+import sitemap from '@astrojs/sitemap';
+import tailwind from '@astrojs/tailwind';
+import image from '@astrojs/image';
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://manuke.dev',
   integrations: [
     mdx(),
-    sitemap(),
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
     tailwind(),
     image({ serviceEntryPoint: '@astrojs/image/sharp' }),
   ],
@@ -17,6 +21,17 @@ export default defineConfig({
     shikiConfig: {
       theme: 'monokai',
       wrap: true,
+    },
+  },
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          entryFileNames: 'entry_[hash].js',
+          // chunkFileNames: 'js/chunk_[hash].js',
+          assetFileNames: 'assets/asset_[hash][extname]',
+        },
+      },
     },
   },
 });
