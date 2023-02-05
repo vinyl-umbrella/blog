@@ -1,0 +1,18 @@
+---
+---
+
+<div class='netabare'>
+  <slot />
+</div>
+
+<style is:global>
+  .netabare {
+    @apply blur-3xl;
+  }
+  .netabare:active {
+    @apply blur-none;
+  }
+  .netabare:hover {
+    @apply blur-none;
+  }
+</style>
