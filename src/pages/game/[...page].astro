@@ -25,7 +25,12 @@ const { page } = Astro.props as {
   title={title}
   ogDesc='プレイしたゲームやクリアしたゲームなど，ゲームに関する話を書きます'
 >
-  <h1 class='text-4xl font-semibold text-cyan-400'>{title}</h1>
+  <div class='flex justify-between'>
+    <h1 class='text-4xl font-semibold text-cyan-400'>{title}</h1>
+    <div class='mt-auto text-sky-400'>
+      <a href='/game/rss.xml'>rss</a>
+    </div>
+  </div>
   <div>
     {
       page.data.map((data) => (

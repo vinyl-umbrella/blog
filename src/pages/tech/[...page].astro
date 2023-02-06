@@ -25,7 +25,12 @@ const { page } = Astro.props as {
   title={title}
   ogDesc='ITに関する学んだ技術・スキル・直面した課題とその解決法などの記事をまとめています'
 >
-  <h1 class='text-4xl font-semibold text-cyan-400'>{title}</h1>
+  <div class='flex justify-between'>
+    <h1 class='text-4xl font-semibold text-cyan-400'>{title}</h1>
+    <div class='mt-auto text-sky-400'>
+      <a href='/tech/rss.xml'>rss</a>
+    </div>
+  </div>
   <div>
     {
       page.data.map((data) => (
