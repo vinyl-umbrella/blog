@@ -13,8 +13,6 @@ const d = formatDate(pubDate);
 const image = frontmatter?.image
   ? (new URL(frontmatter?.image, Astro.site ?? 'http://localhost:3000')).href
   : (new URL('/img/me.jpg', Astro.site ?? 'http://localhost:3000',)).href;
-
-console.log(image);
 ---
 
 <MainLayout pageTitle={title} ogDesc={description} ogImage={image}>
