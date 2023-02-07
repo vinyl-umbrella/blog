@@ -3,7 +3,7 @@ layout: ../../layouts/BlogLayout.astro
 title: Astro@2でブログを開設
 pubDate: 2023-01-31
 description: astroでブログを一から作ってみた
-image: /img/tech/astro.png
+image: /img/tech/astro.webp
 ---
 
 修論が終わってようやくリラックスできる時間ができたが，同時に学生の終わり，社会人の始まりを実感する．

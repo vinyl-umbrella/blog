@@ -12,7 +12,7 @@ const d = formatDate(pubDate);
 // prettier-ignore
 const image = frontmatter?.image
   ? (new URL(frontmatter?.image, Astro.site ?? 'http://localhost:3000')).href
-  : (new URL('/img/me.jpg', Astro.site ?? 'http://localhost:3000',)).href;
+  : (new URL('/img/me.webp', Astro.site ?? 'http://localhost:3000',)).href;
 ---
 
 <MainLayout pageTitle={title} ogDesc={description} ogImage={image}>
