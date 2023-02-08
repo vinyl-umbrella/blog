@@ -77,7 +77,7 @@ FROM chatlog
 WHERE MATCH(message) AGAINST ('1234' IN BOOLEAN MODE);
 ```
 
-ここで検索モードは2種類ある．
+ここで検索モードは3種類ある．
 
 - BOOLEAN MODE
 
@@ -85,7 +85,11 @@ AGAINST句に与えた文字に完全に一致するものだけを返す．AND�
 
 - NATURAL LANGUAGE MODE
 
-検索文字列を多く含むテキストを類似度が高いとして評価される．
+フルテキストインデックスを使用して，検索文字列を多く含むテキストを類似度が高いとして評価される．
+
+- QUERY EXPANSION MODE
+
+入力を拡張し関連する単語を検索し，検索結果を決定する．
 
 ### 注意点
 **mysqlのngramパーサはアルファベットを含む文章をトークナイズする際に罠がある**
