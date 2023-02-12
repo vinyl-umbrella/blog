@@ -26,7 +26,12 @@ description: SSHログインをSlackやDiscordに通知する方法
 ```sh
 echo '{"username": "INSTANCE NAME", "text": "`'`date "+%Y-%m-%d %H:%M:%S"` '[login]:' $SSH_CLIENT'`"}' | curl -H "Content-Type: application/json" -X POST -d @- SLACK_WEBHOOK_URL
 ```
-<img src="/img/tech/sshrc_slack.webp" />
+<img
+  src="/img/tech/sshrc_slack.webp"
+  alt='sshrc slack'
+  decoding='async'
+  loading='lazy'
+/>
 
 ### Discordの場合
 インスタンス名とWebhookのURLを設定し，`sshrc`に以下の内容を設定すると，インスタンス名，ログイン日時，クライアントIP，クライアントポートが任意のDiscordのチャンネルに投稿される．
@@ -37,4 +42,9 @@ echo '{"username": "INSTANCE NAME", "text": "`'`date "+%Y-%m-%d %H:%M:%S"` '[log
 echo '{"username": "INSTANCE_NAME", "content": "`'`date "+%Y-%m-%d %H:%M:%S"` '[login]:' $SSH_CLIENT'`"}' | curl -H "Content-Type: application/json" -X POST -d @- DISCORD_WEBHOOK_URL
 ```
 
-<img src="/img/tech/sshrc_discord.webp" />
+<img
+  src="/img/tech/sshrc_discord.webp"
+  alt='sshrc discord'
+  decoding='async'
+  loading='lazy'
+/>
