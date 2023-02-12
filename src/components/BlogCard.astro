@@ -17,14 +17,27 @@ const image = frontmatter.image ?? '/img/me.webp';
 >
   <a href={`${href}/`}>
     <article class='flex'>
-      <Image
-        src={image}
-        alt={frontmatter.title}
-        format='webp'
-        height={120}
-        width={160}
-        fit='cover'
-      />
+      {
+        image === '/img/me.webp' ? (
+          <img
+            src='/img/me_thumbnail.webp'
+            alt={frontmatter.title}
+            height='120'
+            width='160'
+            decoding='async'
+            loading='lazy'
+          />
+        ) : (
+          <Image
+            src={image}
+            alt={frontmatter.title}
+            format='webp'
+            height={120}
+            width={160}
+            fit='cover'
+          />
+        )
+      }
       <div class='flex flex-col pl-3'>
         <h2 class='mb-2 text-xl font-semibold text-gray-200'>
           {frontmatter.title}
