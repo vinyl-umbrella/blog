@@ -37,7 +37,8 @@ const image = frontmatter?.image
   .blog h1,
   .blog h2,
   .blog h3 {
-    @apply mt-8 mb-4 border-b-2 border-gray-400 font-bold text-gray-100;
+    @apply mt-8 mb-4 font-bold text-gray-100;
+    background: linear-gradient(transparent 85%, rgb(126, 132, 142) 85%);
   }
   .blog h4 {
     @apply mt-4 mb-2 font-bold;
@@ -106,6 +107,6 @@ const image = frontmatter?.image
 
   .blog img {
     min-width: 300px;
-    @apply m-4 mx-auto w-4/5 rounded-md;
+    @apply mx-auto w-4/5 rounded-md;
   }
 </style>
