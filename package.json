@@ -8,8 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fmt": "prettier -w .",
-    "fmt:check": "prettier --check ."
+    "fmt": "prettier -w src/",
+    "fmt:check": "prettier --check src/"
   },
   "dependencies": {
     "@astrojs/image": "^0.14.0",
