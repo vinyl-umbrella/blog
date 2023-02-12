@@ -76,16 +76,19 @@ SELECT *
 FROM chatlog
 WHERE MATCH(message) AGAINST ('1234' IN BOOLEAN MODE);
 ```
-
+<br />
 ここで検索モードは3種類ある．
+<br /><br />
 
 - BOOLEAN MODE
 
 AGAINST句に与えた文字に完全に一致するものだけを返す．ANDやOR検索もできる．
+<br /><br />
 
 - NATURAL LANGUAGE MODE
 
 フルテキストインデックスを使用して，検索文字列を多く含むテキストを類似度が高いとして評価される．
+<br /><br />
 
 - QUERY EXPANSION MODE
 
