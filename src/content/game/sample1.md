@@ -93,7 +93,3 @@ json
 > 引用
 
 > いんよう
-
-### img
-
-<img src="https://avatars.githubusercontent.com/u/61788251?v=4" width="200px"/>
