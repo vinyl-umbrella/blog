@@ -33,11 +33,14 @@ const image = frontmatter?.image
   .blog {
     @apply break-words text-gray-200;
   }
+
   .blog h1,
   .blog h2,
-  .blog h3,
-  .blog h4 {
+  .blog h3 {
     @apply mt-8 mb-4 border-b-2 border-gray-400 font-bold text-gray-100;
+  }
+  .blog h4 {
+    @apply mt-4 mb-2 font-bold;
   }
   .blog h1,
   .blog h2 {
@@ -62,7 +65,8 @@ const image = frontmatter?.image
   }
 
   .blog p {
-    line-height: 1.75em;
+    line-height: 1.5em;
+    @apply my-2;
   }
   .blog a {
     @apply font-bold text-sky-400;
