@@ -2,7 +2,7 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
 let collection = await getCollection('game');
-const site = 'https://manuke.dev';
+const site = 'https://blog.manuke.dev';
 
 export const get = () =>
   rss({

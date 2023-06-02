@@ -6,7 +6,7 @@ import tailwind from '@astrojs/tailwind';
 import image from '@astrojs/image';
 
 export default defineConfig({
-  site: 'https://manuke.dev',
+  site: 'https://blog.manuke.dev',
   integrations: [
     mdx(),
     sitemap({
