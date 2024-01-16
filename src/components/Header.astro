@@ -1,34 +1,86 @@
 ---
-import { SITE_TITLE } from '../const';
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<header
-  class='sticky top-0 z-50 h-10 border-b-2 border-b-slate-500 bg-slate-900/70 backdrop-blur transition-colors'
->
-  <div class='container mx-auto flex h-full items-center justify-between px-10'>
-    <div class='text-lg font-black'>
-      <a href='/'>{SITE_TITLE}</a>
+<header>
+  <nav>
+    <h2><a href='/'>{SITE_TITLE}</a></h2>
+
+    <div class='internal-links'>
+      <HeaderLink href='/'>blog</HeaderLink> |
+      <HeaderLink href='/about'>about</HeaderLink>
     </div>
-    <button id='searchButton' aria-label='検索'>
-      <svg
-        class='h-5 w-5 hover:text-sky-300'
-        stroke-width='2'
-        stroke='currentColor'
-        fill='none'
-      >
+
+    <button id='searchButton'>
+      <svg stroke-width='2' stroke='currentColor' fill='none'>
         <path stroke='none'></path>
         <circle cx='9' cy='9' r='7'></circle>
         <line x1='21' y1='21' x2='14' y2='14'></line>
       </svg>
     </button>
-  </div>
+  </nav>
 </header>
 
-<script>
-  const searchBotton = document.getElementById('searchButton');
-  if (searchBotton !== null) {
-    searchBotton.addEventListener('click', () => {
-      console.log('search articles');
-    });
+<style>
+  header {
+    width: 100%;
+    height: 36px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(var(--gray-2), 0.6);
+    border-bottom: 4px solid rgb(var(--gray-4));
+    position: fixed;
+    /* blur */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
-</script>
+
+  h2 {
+    margin: 0;
+    font-size: 1em;
+    padding-left: 1em;
+  }
+  h2 a,
+  h2 a.active {
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: var(--text-color);
+      border-bottom: 4px solid transparent;
+      text-decoration: none;
+    }
+
+    a.active {
+      text-decoration: none;
+      border-bottom-color: var(--accent);
+    }
+  }
+
+  .internal-links > a {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #searchButton {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--accent);
+    }
+
+    > svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+</style>

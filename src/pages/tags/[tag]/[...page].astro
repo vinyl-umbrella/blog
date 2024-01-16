@@ -1,0 +1,28 @@
+---
+import Layout from '../../../layouts/BlogList.astro';
+
+import { getContents, getTags } from '../../../utils/util';
+import type { GetStaticPathsOptions, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = await getContents();
+  const allTags = getTags(allPosts);
+
+  return allTags
+    .map((tag) =>
+      paginate(
+        allPosts.filter((post) => post.data.tags.includes(tag)),
+        { pageSize: 10, params: { tag } },
+      ),
+    )
+    .flat();
+}
+
+const { tag } = Astro.params;
+const { page } = Astro.props as {
+  page: Page<CollectionEntry<'blog'>>;
+};
+---
+
+<Layout page={page} tag={tag} />

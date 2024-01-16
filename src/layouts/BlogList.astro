@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/General.astro';
+import BlogCard from '../components/BlogCard.astro';
+import Pages from '../components/Pages.astro';
+
+import { SITE_DESCRIPTION } from '../consts';
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import TagList from '../components/TagList.astro';
+
+type Props = {
+  page: Page<CollectionEntry<'blog'>>;
+  tag: string;
+};
+const { page, tag } = Astro.props;
+---
+
+<Layout
+  title=`${tag}の記事一覧-${page.currentPage}`
+  description=`${SITE_DESCRIPTION}．本ページでは${tag}の記事一覧の${page.currentPage}ページ目を表示しています．}`
+>
+  <div class='main'>
+    <TagList />
+    <div class='articles'>
+      <div class='top'>
+        <h3>
+          {
+            page.currentPage === 1
+              ? `${tag}の最新記事`
+              : `${tag}の記事一覧-${page.currentPage}`
+          }
+        </h3>
+        {
+          tag === 'すべて' && (
+            <a href='/rss.xml'>
+              <svg viewBox='0 0 15 15'>
+                <path
+                  fill='none'
+                  stroke='currentColor'
+                  d='M.5 13.5a1 1 0 1 0 2 0a1 1 0 0 0-2 0Zm14 1.5C14.5 6.992 8.008.5 0 .5m0 6A8.5 8.5 0 0 1 8.5 15'
+                />
+              </svg>
+            </a>
+          )
+        }
+      </div>
+
+      {page.data.map((post) => <BlogCard slug={post.slug} z={post.data} />)}
+      <Pages prev={page.url.prev} next={page.url.next} />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .main {
+    display: flex;
+    gap: 1em;
+  }
+
+  .articles {
+    width: 100%;
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  svg {
+    margin-top: 8px;
+    width: 20px;
+    height: 20px;
+  }
+</style>

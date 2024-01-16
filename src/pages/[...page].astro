@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/BlogList.astro';
+
+import { getContents } from '../utils/util';
+import type { GetStaticPathsOptions, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  let collection = await getContents();
+
+  return paginate(collection, { pageSize: 10 });
+}
+
+const { page } = Astro.props as {
+  page: Page<CollectionEntry<'blog'>>;
+};
+---
+
+<Layout page={page} tag='すべて' />

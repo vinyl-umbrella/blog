@@ -1,5 +1,18 @@
-<footer class='bottom-0 mt-10 h-20 border-t-2 border-t-slate-600'>
-  <div class='container flex h-full items-center px-10 text-sm text-gray-500'>
-    © {new Date().getFullYear()} - Copyright Manuke Engineer, All Rights Reserved.
-  </div>
+---
+const today = new Date();
+---
+
+<footer>
+  &copy; 2023-{today.getFullYear()} jsmz. All rights reserved.
 </footer>
+
+<style>
+  footer {
+    padding: 1em;
+    background: rgb(var(--gray-2));
+    color: rgb(var(--white-3));
+    text-align: center;
+    font-size: smaller;
+    border-top: 2px solid rgb(var(--gray-1));
+  }
+</style>

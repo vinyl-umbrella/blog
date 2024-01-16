@@ -1,29 +1,27 @@
 {
-  "name": "manuke_dev",
+  "name": "blog",
   "type": "module",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "npm run build && astro preview",
     "astro": "astro",
-    "fmt": "prettier -w src/",
+    "fmt": "prettier --write src/",
     "fmt:check": "prettier --check src/"
   },
   "dependencies": {
-    "@astrojs/image": "^0.14.1",
-    "@astrojs/mdx": "^0.16.0",
-    "@astrojs/rss": "^2.1.0",
-    "@astrojs/sitemap": "^1.0.1",
-    "@astrojs/tailwind": "^3.0.1",
-    "astro": "^2.0.10",
-    "sharp": "^0.31.3",
-    "tailwindcss": "^3.2.6"
+    "@astrojs/check": "^0.4.1",
+    "@astrojs/mdx": "^2.0.4",
+    "@astrojs/rss": "^4.0.2",
+    "@astrojs/sitemap": "^3.0.4",
+    "astro": "^4.1.2",
+    "remark-flexible-code-titles": "^1.1.4",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "prettier": "^2.8.4",
-    "prettier-plugin-astro": "^0.8.0",
-    "prettier-plugin-tailwindcss": "^0.2.2"
+    "prettier": "^3.2.1",
+    "prettier-plugin-astro": "^0.12.3"
   }
 }

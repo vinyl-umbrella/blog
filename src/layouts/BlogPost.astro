@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/General.astro';
+
+import { formatDate } from '../utils/util';
+import type { CollectionEntry } from 'astro:content';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, tags } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <article>
+    <div class='prose'>
+      <div class='title'>
+        <div class='sub'>
+          {formatDate(pubDate)}
+          {
+            updatedDate && (
+              <span class='last-updated-on'>
+                (↻{formatDate(updatedDate)}更新)
+              </span>
+            )
+          }
+          {tags.map((tag) => (
+            <a href=`/tags/${tag}` class='tag'>
+              #{tag}
+            </a>
+          ))}
+        </div>
+        <h1>{title}</h1>
+        <hr />
+      </div>
+      <div class='article'>
+        <slot />
+      </div>
+    </div>
+  </article>
+</Layout>
+
+
+<style>
+  .prose {
+    width: 720px;
+    max-width: calc(100% - 2em);
+    margin: auto;
+    padding: 1em;
+
+    .title {
+      margin-bottom: 1em;
+      line-height: 1;
+      color: rgb(var(--white-1));
+
+      .sub {
+        margin-bottom: 0.5em;
+        color: rgb(var(--white-3), 0.7);
+
+        .last-updated-on {
+          font-style: italic;
+        }
+
+        a {
+          margin-left: 0.5em;
+        }
+      }
+    }
+
+    .article {
+      h1,
+      h2,
+      h3,
+      h4 {
+        background: linear-gradient(
+          transparent 85%,
+          rgb(var(--gray-4)) 85%
+        );
+      }
+    }
+  }
+</style>

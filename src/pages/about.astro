@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/General.astro';
+---
+
+<Layout title='About Me' description='about me, jsmz'>
+  <h3>About Me</h3>
+
+  <div class='flex'>
+    <img width='128px' height='128px' src='/img/me.webp' />
+    <div class='me'>
+      <p>jsmz です</p>
+      <p>🖳都内のWeb系企業でSREやってます</p>
+      <p>🕮修士(工学)，AWS SAA</p>
+      <p>
+        <span style='color: #FFA0A0'>❤</span>
+        Webセキュリティ, XSS, AWS Lambda，Mozilla<br />
+      </p>
+      <p>✉ contact(あっと)jsmz.dev</p>
+    </div>
+  </div>
+  <!-- TODO: GitHub, feed -->
+</Layout>
+
+<style>
+  .flex {
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    border-radius: 50%;
+    height: 128px;
+    width: 128px;
+    min-width: fit-content;
+    margin: auto 2em auto 0;
+  }
+
+  .me {
+    p {
+      margin: 0.25em 0;
+    }
+  }
+</style>
