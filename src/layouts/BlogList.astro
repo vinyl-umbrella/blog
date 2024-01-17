@@ -8,10 +8,10 @@ import type { Page } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import TagList from '../components/TagList.astro';
 
-type Props = {
+interface Props {
   page: Page<CollectionEntry<'blog'>>;
   tag: string;
-};
+}
 const { page, tag } = Astro.props;
 ---
 
