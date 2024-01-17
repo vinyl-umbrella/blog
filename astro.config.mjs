@@ -14,6 +14,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
+      filter: (page) => !page.match(/\/blog\/draft\//g),
       changefreq: 'weekly',
       priority: 0.7,
     })
