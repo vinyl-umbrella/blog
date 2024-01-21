@@ -27,6 +27,9 @@ export default defineConfig({
     remarkPlugins: [remarkFlexibleCodeTitles],
   },
   vite: {
+    optimizeDeps: {
+      exclude: ['sharp']
+    },
     build: {
       rollupOptions: {
         output: {

@@ -19,3 +19,8 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# fonts
+*.ttf
+*.woff
+*.woff2

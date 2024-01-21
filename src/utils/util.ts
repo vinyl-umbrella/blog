@@ -23,4 +23,14 @@ function getTags(collections: Collections): string[] {
   return [...new Set(collections.map((post) => post.data.tags).flat())];
 }
 
-export { formatDate, getContents, getTags };
+function convert2OgImagePath(url: URL): string {
+  // if not posts, return default image
+  if (!url.pathname.startsWith('/blog/')) return '/img/me_thumbnail.webp';
+
+  // convert path
+  let imgPath = url.pathname.replace('/blog/', '/og/');
+  imgPath += '.webp';
+  return imgPath;
+}
+
+export { formatDate, getContents, getTags, convert2OgImagePath };
