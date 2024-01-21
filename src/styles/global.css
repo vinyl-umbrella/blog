@@ -92,7 +92,7 @@ pre {
     margin-top: 0;
   }
 
-  >code {
+  > code {
     all: unset;
   }
 }

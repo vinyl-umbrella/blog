@@ -7,24 +7,20 @@ import remarkFlexibleCodeTitles from 'remark-flexible-code-titles';
 export default defineConfig({
   site: 'https://jsmz.dev',
   redirects: {
-    '/blog': '/',
+    '/blog': '/'
   },
   trailingSlash: 'never',
-
-  integrations: [
-    mdx(),
-    sitemap({
-      filter: (page) => !page.match(/\/blog\/draft\//g),
-      changefreq: 'weekly',
-      priority: 0.7,
-    })
-  ],
+  integrations: [mdx(), sitemap({
+    filter: page => !page.match(/\/blog\/draft\//g),
+    changefreq: 'weekly',
+    priority: 0.7
+  })],
   markdown: {
     shikiConfig: {
       theme: 'github-dark-dimmed',
-      wrap: true,
+      wrap: true
     },
-    remarkPlugins: [remarkFlexibleCodeTitles],
+    remarkPlugins: [remarkFlexibleCodeTitles]
   },
   vite: {
     optimizeDeps: {
@@ -33,9 +29,9 @@ export default defineConfig({
     build: {
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/[name][extname]',
-        },
+          assetFileNames: 'assets/[name][extname]'
+        }
       }
     }
-  },
+  }
 });
