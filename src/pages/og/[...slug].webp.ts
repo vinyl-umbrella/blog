@@ -13,7 +13,7 @@ export async function GET({ params }: APIContext) {
   const posts = (await getContents()).find((post) => post.slug === slug);
   if (!posts) return { status: 404 };
 
-  const body = await createOgImage(posts.data.title, posts.data.tags);
+  const body = await createOgImage(posts.data.title);
   return new Response(body, {
     status: 200,
     headers: {

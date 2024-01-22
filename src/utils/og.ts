@@ -9,17 +9,50 @@ async function getFont(): Promise<Buffer> {
   );
 }
 
-async function createOgImage(title: string, tags: string[]): Promise<Buffer> {
+async function createOgImage(title: string): Promise<Buffer> {
   // create html markup
   const markup = html`
-    <div
-      style="width: 1200px; height: 630px; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: center; align-items: center; padding: 0 24px; background-color: rgb(59, 66, 82); color: rgb(216, 222, 233);"
-    >
-      <h1 style="font-size: 5.5rem; font-weight: 700">${title}</h1>
-      <h2 style="font-size: 2.5rem; font-weight: 700">jsmz.dev</h2>
-      <div>${tags.map((tag) => `#${tag}`).join(' ')}</div>
+  <div style="
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.1em;
+    background-color: rgb(59, 66, 82);
+    color: rgb(216, 222, 233);
+    border: 8px solid rgba(147, 197, 253, 0.6);
+  ">
+    <div style="
+      right: 42;
+      bottom: 42;
+      position: absolute;
+      display: flex;
+      align-items: center;
+    ">
+      <span style="width: 16; height: 16; background: rgba(147, 197, 253, 0.5);" />
+      <span style="margin-left: 8; font-size: 20; color: rgba(147, 197, 253, 0.9);">
+        jsmz.dev
+      </span>
     </div>
-  `;
+    <div style="
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px 50px;
+      margin: 0 42px;
+      font-size: 45;
+      width: auto;
+      max-width: 750;
+      text-align: center;
+      background-color: rgb(46, 52, 64);
+      line-height: 1.4;
+      border-bottom: 4px solid rgba(147, 197, 253, 0.6);
+    ">
+      ${title}
+    </div>
+  </div>
+`;
 
   // create svg
   const svg = await satori(markup, {
