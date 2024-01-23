@@ -1,15 +1,26 @@
 ---
 import Layout from '../layouts/General.astro';
+import Toc from '../components/Toc.astro';
 
 import { formatDate } from '../utils/util';
 import type { CollectionEntry } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+interface Props {
+  props: CollectionEntry<'blog'>['data'];
+  headings: MarkdownHeading[];
+}
 
-const { title, description, pubDate, updatedDate, tags } = Astro.props;
+const { title, description, pubDate, updatedDate, tags } = Astro.props.props;
+let { headings } = Astro.props;
+// add page title to headings
+headings.unshift({ depth: 1, text: title, slug: title});
 ---
 
 <Layout title={title} description={description}>
+  <div class='main'>
+  <Toc headings={headings} />
+
   <article>
     <div class='prose'>
       <div class='title'>
@@ -28,7 +39,7 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
             </a>
           ))}
         </div>
-        <h1>{title}</h1>
+        <h1 id={title}>{title}</h1>
         <hr />
       </div>
       <div class='article'>
@@ -36,10 +47,16 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
       </div>
     </div>
   </article>
+  </div>
 </Layout>
 
 
 <style>
+  .main {
+    display: flex;
+    gap: 1em;
+  }
+
   .prose {
     width: 720px;
     max-width: calc(100% - 2em);
