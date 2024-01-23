@@ -82,6 +82,13 @@ svg {
   vertical-align: middle;
 }
 
+code {
+  font-size: 95%;
+  background-color: rgb(var(--gray-1));
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
 pre {
   padding: 1em;
   border-radius: 8px;

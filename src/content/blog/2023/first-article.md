@@ -2,7 +2,6 @@
 title: Astro@2でブログを開設
 pubDate: 2023-01-31
 description: astroでブログを一から作ってみた
-image: /img/tech/astro.webp
 tags: ['astro', 'front']
 ---
 

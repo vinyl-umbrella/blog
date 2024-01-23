@@ -12,7 +12,8 @@ async function getFont(): Promise<Buffer> {
 async function createOgImage(title: string): Promise<Buffer> {
   // create html markup
   const markup = html`
-  <div style="
+    <div
+      style="
     display: flex;
     height: 100%;
     width: 100%;
@@ -22,20 +23,28 @@ async function createOgImage(title: string): Promise<Buffer> {
     background-color: rgb(59, 66, 82);
     color: rgb(216, 222, 233);
     border: 8px solid rgba(147, 197, 253, 0.6);
-  ">
-    <div style="
+  "
+    >
+      <div
+        style="
       right: 42;
       bottom: 42;
       position: absolute;
       display: flex;
       align-items: center;
-    ">
-      <span style="width: 16; height: 16; background: rgba(147, 197, 253, 0.5);" />
-      <span style="margin-left: 8; font-size: 20; color: rgba(147, 197, 253, 0.9);">
-        jsmz.dev
-      </span>
-    </div>
-    <div style="
+    "
+      >
+        <span
+          style="width: 16; height: 16; background: rgba(147, 197, 253, 0.5);"
+        />
+        <span
+          style="margin-left: 8; font-size: 20; color: rgba(147, 197, 253, 0.9);"
+        >
+          jsmz.dev
+        </span>
+      </div>
+      <div
+        style="
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -48,11 +57,12 @@ async function createOgImage(title: string): Promise<Buffer> {
       background-color: rgb(46, 52, 64);
       line-height: 1.4;
       border-bottom: 4px solid rgba(147, 197, 253, 0.6);
-    ">
-      ${title}
+    "
+      >
+        ${title}
+      </div>
     </div>
-  </div>
-`;
+  `;
 
   // create svg
   const svg = await satori(markup, {
