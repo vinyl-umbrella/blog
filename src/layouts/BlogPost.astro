@@ -19,34 +19,33 @@ headings.unshift({ depth: 1, text: title, slug: title});
 
 <Layout title={title} description={description}>
   <div class='main'>
-  <Toc headings={headings} />
-
-  <article>
-    <div class='prose'>
-      <div class='title'>
-        <div class='sub'>
-          {formatDate(pubDate)}
-          {
-            updatedDate && (
-              <span class='last-updated-on'>
-                (↻{formatDate(updatedDate)}更新)
-              </span>
-            )
-          }
-          {tags.map((tag) => (
-            <a href=`/tags/${tag}` class='tag'>
-              #{tag}
-            </a>
-          ))}
+    <Toc headings={headings} />
+    <article>
+      <div class='prose'>
+        <div class='title'>
+          <div class='sub'>
+            {formatDate(pubDate)}
+            {
+              updatedDate && (
+                <span class='last-updated-on'>
+                  (↻{formatDate(updatedDate)}更新)
+                </span>
+              )
+            }
+            {tags.map((tag) => (
+              <a href=`/tags/${tag}` class='tag'>
+                #{tag}
+              </a>
+            ))}
+          </div>
+          <h1 id={title}>{title}</h1>
+          <hr />
         </div>
-        <h1 id={title}>{title}</h1>
-        <hr />
+        <div class='article'>
+          <slot />
+        </div>
       </div>
-      <div class='article'>
-        <slot />
-      </div>
-    </div>
-  </article>
+    </article>
   </div>
 </Layout>
 
@@ -55,6 +54,9 @@ headings.unshift({ depth: 1, text: title, slug: title});
   .main {
     display: flex;
     gap: 1em;
+    &>article {
+      width: 100%;
+    }
   }
 
   .prose {

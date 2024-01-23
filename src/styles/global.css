@@ -14,6 +14,26 @@
     0 8px 24px rgba(var(--gray-3), 33%), 0 16px 32px rgba(var(--gray-3), 33%);
 }
 
+* {
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background-color: rgb(var(--gray-4));
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--gray-1));
+    border: 1px solid transparent;
+    border-radius: 30px;
+    background-clip: content-box;
+  }
+}
+
 body {
   font-family: 'system-ui', 'Arial', 'Helvetica', "'Hiragino Sans'",
     "'Hiragino Kaku Gothic ProN'", "'Meiryo,sans-serif'", 'sans-serif';
