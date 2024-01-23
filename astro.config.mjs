@@ -25,13 +25,6 @@ export default defineConfig({
   vite: {
     optimizeDeps: {
       exclude: ['sharp']
-    },
-    build: {
-      rollupOptions: {
-        output: {
-          assetFileNames: 'assets/[name][extname]'
-        }
-      }
     }
   }
 });
