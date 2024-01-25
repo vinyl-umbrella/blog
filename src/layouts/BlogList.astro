@@ -20,7 +20,7 @@ const { page, tag } = Astro.props;
   description=`${SITE_DESCRIPTION}．本ページでは${tag}の記事一覧の${page.currentPage}ページ目を表示しています．}`
 >
   <div class='main'>
-    <TagList />
+    <TagList classname='side' />
     <div class='articles'>
       <div class='top'>
         <h3>
@@ -52,6 +52,7 @@ const { page, tag } = Astro.props;
       <Pages prev={page.url.prev} next={page.url.next} />
     </div>
   </div>
+  <TagList classname='bottom' />
 </Layout>
 
 <style>

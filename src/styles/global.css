@@ -90,6 +90,14 @@ input {
 
 table {
   width: 100%;
+  border: 4px double rgb(var(--gray-4));
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: 2px solid rgb(var(--gray-4));
+    padding: 0.5em;
+  }
 }
 
 img {
@@ -119,7 +127,7 @@ pre {
     margin-top: 0;
   }
 
-  > code {
+  >code {
     all: unset;
   }
 }

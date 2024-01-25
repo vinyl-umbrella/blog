@@ -3,9 +3,15 @@ import { getContents, getTags } from '../utils/util';
 
 const allPosts = await getContents();
 const tags = getTags(allPosts);
+
+interface Props {
+  classname?: string;
+}
+
+const { classname } = Astro.props;
 ---
 
-<div class='tags'>
+<div class:list={['tags', classname]}>
   <h3>Tags</h3>
   {
     tags.map((tag) => (
@@ -19,11 +25,7 @@ const tags = getTags(allPosts);
 <style>
   .tags {
     top: 100px;
-    position: sticky;
     display: block;
-    width: 16em;
-    height: 300px;
-    max-height: 30%;
     padding: 6px;
     overflow-y: scroll;
     background-color: rgb(var(--gray-1));
@@ -48,9 +50,25 @@ const tags = getTags(allPosts);
     }
   }
 
-  /* mobile */
+  /* pc */
   @media (max-width: 768px) {
-    .tags {
+    .side {
+      display: none;
+    }
+    .bottom {
+      margin-top: 1em;
+    }
+  }
+
+  /* mobile */
+  @media (min-width: 768px) {
+    .side {
+      width: 16em;
+      position: sticky;
+      height: 300px;
+      max-height: 30%;
+    }
+    .bottom {
       display: none;
     }
   }
