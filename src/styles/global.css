@@ -127,8 +127,10 @@ pre {
     margin-top: 0;
   }
 
-  >code {
+  > code {
     all: unset;
+    white-space: pre;
+    overflow-x: scroll;
   }
 }
 
