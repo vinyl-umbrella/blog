@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import remarkFlexibleCodeTitles from 'remark-flexible-code-titles';
+import addCodeTitle from './src/plugins/remarkAddCodeTitle';
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,7 +20,7 @@ export default defineConfig({
       theme: 'github-dark-dimmed',
       wrap: true
     },
-    remarkPlugins: [remarkFlexibleCodeTitles]
+    remarkPlugins: [addCodeTitle],
   },
   vite: {
     optimizeDeps: {

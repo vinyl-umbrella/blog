@@ -28,7 +28,7 @@ WebhookのURLを設定し，`sshrc`に以下の内容を設定すると，ホス
 
 送信する内容のカスタマイズに関しては[Slackのドキュメント](https://api.slack.com/messaging/webhooks)を見るとよい．
 
-```sh:/etc/ssh/sshrc
+```sh /etc/ssh/sshrc
 SLACK_WEBHOOK_URL=''
 post_data='{"username": "'$(hostname)'", "text": "`'$(date "+%Y-%m-%d %H:%M:%S")' [login]: '$($SSH_CLIENT)'`"}'
 echo $post_data | curl -X POST -H "Content-Type: application/json" -d @- $SLACK_WEBHOOK_URL
@@ -42,7 +42,7 @@ Discordも同様に，WebhookのURLを設定し，`sshrc`に以下の内容を�
 
 もちろんアイコンなども設定できる．詳しくは[Discordのドキュメント](https://discord.com/developers/docs/resources/webhook)を見るとよい．
 
-```sh:/etc/ssh/sshrc
+```sh /etc/ssh/sshrc
 DISCORD_WEBHOOK_URL=''
 post_data='{"username": "'$(hostname)'", "content": "`'$(date "+%Y-%m-%d %H:%M:%S")' [login]: '$($SSH_CLIENT)'`"}'
 echo $post_data | curl -X POST -H "Content-Type: application/json" -d @- $DISCORD_WEBHOOK_URL

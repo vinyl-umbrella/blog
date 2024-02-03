@@ -36,7 +36,7 @@ CSSってこんなに難しかったっけ？
 astroでブログを作って公開している人たちに感謝．
 先人たちは，ビルド時にGoogle FontsからフォントのURLを取得して，そのファイルをぶっこ抜いて，むりやり生成している例が多かった．私は，フォントはローカルに用意して置いたものを使ってます．
 
-```ts:src/pages/og/[...slug].webp.ts
+```ts src/pages/og/[...slug].webp.ts
 import type { APIContext } from 'astro';
 import { createOgImage } from '../../utils/og';
 import { getContents } from '../../utils/util';
@@ -62,7 +62,7 @@ export async function GET({ params }: APIContext) {
 }
 ```
 
-```ts:src/utils/og.ts
+```ts src/utils/og.ts a
 import fs from 'fs/promises';
 import { html } from 'satori-html';
 import satori from 'satori';
@@ -77,9 +77,7 @@ async function getFont(): Promise<Buffer> {
 
 async function createOgImage(title: string): Promise<Buffer> {
   // create html markup
-  const markup = html`
-    ここにog画像となるhtmlを書く
-  `;
+  const markup = html` ここにog画像となるhtmlを書く `;
 
   // create svg
   const svg = await satori(markup, {
@@ -101,7 +99,6 @@ async function createOgImage(title: string): Promise<Buffer> {
 }
 
 export { createOgImage };
-
 ```
 
 ### tailwindcss は剥がした

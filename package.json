@@ -17,7 +17,6 @@
     "@astrojs/rss": "^4.0.2",
     "@astrojs/sitemap": "^3.0.4",
     "astro": "^4.1.2",
-    "remark-flexible-code-titles": "^1.1.4",
     "satori": "^0.10.11",
     "satori-html": "^0.3.2",
     "typescript": "^5.3.3"
