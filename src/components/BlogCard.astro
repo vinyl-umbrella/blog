@@ -27,11 +27,13 @@ const { slug, z } = Astro.props;
           }
         </div>
         <div class='sub'>
-          {z.tags.map((tag) => (
-            <a href=`/tags/${tag}` class='tag'>
-              #{tag}{' '}
-            </a>
-          ))}
+          {
+            z.tags.map((tag) => (
+              <a href={`/tags/${tag}`} class='tag'>
+                #{tag}{' '}
+              </a>
+            ))
+          }
         </div>
       </div>
     </article>

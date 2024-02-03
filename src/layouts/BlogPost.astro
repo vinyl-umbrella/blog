@@ -14,7 +14,7 @@ interface Props {
 const { title, description, pubDate, updatedDate, tags } = Astro.props.props;
 let { headings } = Astro.props;
 // add page title to headings
-headings.unshift({ depth: 1, text: title, slug: title});
+headings.unshift({ depth: 1, text: title, slug: title });
 ---
 
 <Layout title={title} description={description}>
@@ -32,11 +32,13 @@ headings.unshift({ depth: 1, text: title, slug: title});
                 </span>
               )
             }
-            {tags.map((tag) => (
-              <a href=`/tags/${tag}` class='tag'>
-                #{tag}
-              </a>
-            ))}
+            {
+              tags.map((tag) => (
+                <a href={`/tags/${tag}`} class='tag'>
+                  #{tag}
+                </a>
+              ))
+            }
           </div>
           <h1 id={title}>{title}</h1>
           <hr />
@@ -49,12 +51,11 @@ headings.unshift({ depth: 1, text: title, slug: title});
   </div>
 </Layout>
 
-
 <style>
   .main {
     display: flex;
     gap: 1em;
-    &>article {
+    & > article {
       width: 100%;
     }
   }
@@ -88,10 +89,7 @@ headings.unshift({ depth: 1, text: title, slug: title});
       h2,
       h3,
       h4 {
-        background: linear-gradient(
-          transparent 85%,
-          rgb(var(--gray-4)) 85%
-        );
+        background: linear-gradient(transparent 85%, rgb(var(--gray-4)) 85%);
       }
     }
     img {
