@@ -30,7 +30,7 @@ const { headings } = Astro.props;
     top: 95px;
     position: sticky;
     display: block;
-    width: 16em;
+    width: 12em;
     height: 300px;
     max-height: 50%;
     padding: 6px;
@@ -38,6 +38,11 @@ const { headings } = Astro.props;
     background-color: rgb(var(--gray-1));
     border: rgb(var(--white-3)) 1px solid;
     border-radius: 8px;
+
+    @media (max-width: 768px) {
+      /* mobile */
+      display: none;
+    }
 
     h3 {
       margin-top: 0;
@@ -85,12 +90,6 @@ const { headings } = Astro.props;
         display: inline-block;
         width: 1em;
       }
-    }
-  }
-  /* mobile */
-  @media (max-width: 768px) {
-    .toc {
-      display: none;
     }
   }
 </style>

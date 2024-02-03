@@ -46,6 +46,11 @@ body {
   color: var(--text-color);
   font-size: 18px;
   line-height: 1.7;
+
+  @media (max-width: 768px) {
+    /* mobile */
+    font-size: 16px;
+  }
 }
 
 main {
@@ -162,13 +167,6 @@ hr {
 .footnotes {
   font-size: smaller;
   border-top: rgb(var(--gray-4)) 1px solid;
-}
-
-/* mobile */
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
 }
 
 .sr-only {

@@ -56,12 +56,19 @@ headings.unshift({ depth: 1, text: title, slug: title });
     display: flex;
     gap: 1em;
     & > article {
-      width: 100%;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+
+      @media (min-width: 768px) {
+        width: calc(100% - 12em);
+      }
     }
   }
 
   .prose {
     max-width: calc(100% - 2em);
+    overflow-x: hidden;
     margin: auto;
     padding: 1em;
 

@@ -50,26 +50,22 @@ const { classname } = Astro.props;
     }
   }
 
-  /* pc */
-  @media (max-width: 768px) {
-    .side {
+  .side {
+    width: 16em;
+    position: sticky;
+    height: 300px;
+    max-height: 30%;
+    @media (max-width: 768px) {
+      /* mobile */
       display: none;
-    }
-    .bottom {
-      margin-top: 1em;
     }
   }
 
-  /* mobile */
-  @media (min-width: 768px) {
-    .side {
-      width: 16em;
-      position: sticky;
-      height: 300px;
-      max-height: 30%;
-    }
-    .bottom {
-      display: none;
+  .bottom {
+    display: none;
+    @media (max-width: 768px) {
+      /* mobile */
+      margin-top: 1em;
     }
   }
 </style>

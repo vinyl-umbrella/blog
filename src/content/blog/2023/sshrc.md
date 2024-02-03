@@ -30,7 +30,8 @@ WebhookのURLを設定し，`sshrc`に以下の内容を設定すると，ホス
 
 ```sh:/etc/ssh/sshrc
 SLACK_WEBHOOK_URL=''
-echo '{"username": "`hostname`", "text": "`'`date "+%Y-%m-%d %H:%M:%S"` '[login]:' $SSH_CLIENT'`"}' | curl -X POST -H "Content-Type: application/json" -d @- $SLACK_WEBHOOK_URL
+post_data='{"username": "'$(hostname)'", "text": "`'$(date "+%Y-%m-%d %H:%M:%S")' [login]: '$($SSH_CLIENT)'`"}'
+echo $post_data | curl -X POST -H "Content-Type: application/json" -d @- $SLACK_WEBHOOK_URL
 ```
 
 ![sshrc slack](./assets/sshrc_slack.webp)
@@ -43,7 +44,8 @@ Discordも同様に，WebhookのURLを設定し，`sshrc`に以下の内容を�
 
 ```sh:/etc/ssh/sshrc
 DISCORD_WEBHOOK_URL=''
-echo '{"username": "'`hostname`'", "content": "`'`date "+%Y-%m-%d %H:%M:%S"` '[login]:' $SSH_CLIENT'`"}' | curl -X POST -H "Content-Type: application/json" -d @- $DISCORD_WEBHOOK_URL
+post_data='{"username": "'$(hostname)'", "content": "`'$(date "+%Y-%m-%d %H:%M:%S")' [login]: '$($SSH_CLIENT)'`"}'
+echo $post_data | curl -X POST -H "Content-Type: application/json" -d @- $DISCORD_WEBHOOK_URL
 ```
 
 ![sshrc discord](./assets/sshrc_discord.webp)

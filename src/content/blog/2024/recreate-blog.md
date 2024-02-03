@@ -114,7 +114,6 @@ export { createOgImage };
 
 自分でクラスを作成し，最低限のものにすることで，メンテナンス性を高めました．
 
-
 ### デプロイ先
 
 以前は，Firebase Hostingを使っていたが，Cloudflare Pagesに移行した．上にも書いたが，以前はほかにFirebaseで公開しているサービスがあったのと，Google Domainsでドメインを取っていたためでした．
