@@ -1,0 +1,95 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<div class='toc'>
+  <h3>目次</h3>
+  {
+    headings.map((heading) => (
+      <>
+        <a
+          href={`#${heading.slug}`}
+          class={`heading-${heading.depth < 4 ? heading.depth : 4}`}
+        >
+          {heading.text}
+        </a>
+        <br />
+      </>
+    ))
+  }
+</div>
+
+<style>
+  .toc {
+    top: 95px;
+    position: sticky;
+    display: block;
+    width: 12em;
+    height: 300px;
+    max-height: 50%;
+    padding: 6px;
+    overflow-y: scroll;
+    background-color: rgb(var(--gray-1));
+    border: rgb(var(--white-3)) 1px solid;
+    border-radius: 8px;
+
+    @media (max-width: 768px) {
+      /* mobile */
+      display: none;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    .heading-1 {
+      text-decoration: none;
+      color: var(--text-color);
+      &:hover {
+        color: var(--accent);
+      }
+    }
+
+    .heading-2 {
+      text-decoration: none;
+      color: rgba(var(--white-3), 0.8);
+      &:hover {
+        color: var(--accent);
+      }
+    }
+
+    .heading-3 {
+      font-size: smaller;
+      text-decoration: none;
+      color: rgba(var(--white-3), 0.7);
+      &:hover {
+        color: var(--accent);
+      }
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 0.5em;
+      }
+    }
+
+    .heading-4 {
+      font-size: smaller;
+      text-decoration: none;
+      color: rgba(var(--white-3), 0.6);
+      &:hover {
+        color: var(--accent);
+      }
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 1em;
+      }
+    }
+  }
+</style>

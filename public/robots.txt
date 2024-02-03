@@ -1,2 +1,4 @@
-user-agent: *
-Sitemap: https://blog.manuke.dev/sitemap-index.xml
+User-agent: *
+Allow: /
+
+Sitemap: https://jsmz.dev/sitemap-index.xml

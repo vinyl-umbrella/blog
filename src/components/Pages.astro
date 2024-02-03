@@ -1,10 +1,11 @@
 ---
-type Props = {
+interface Props {
   prev?: string;
   prevText?: string;
   next?: string;
   nextText?: string;
-};
+}
+
 const {
   prev,
   prevText = '前のページ',
@@ -13,7 +14,15 @@ const {
 } = Astro.props;
 ---
 
-<div class='m-4 flex items-center justify-between'>
-  {prev ? <a href={`${prev}/`}>&larr;{prevText}</a> : <div />}
-  {next ? <a href={`${next}/`}>{nextText}&rarr;</a> : <div />}
+<div class='paging'>
+  {prev ? <a href={`${prev}`}>&larr;{prevText}</a> : <div />}
+  {next ? <a href={`${next}`}>{nextText}&rarr;</a> : <div />}
 </div>
+
+<style>
+  .paging {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+</style>

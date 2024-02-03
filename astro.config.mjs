@@ -1,37 +1,31 @@
-// https://astro.build/config
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
-import image from '@astrojs/image';
+import addCodeUtil from './src/plugins/remarkAddCodeUtil';
+import linkNewTab from './src/plugins/remarkLinkNewTab';
 
+// https://astro.build/config
 export default defineConfig({
-  site: 'https://blog.manuke.dev',
-  integrations: [
-    mdx(),
-    sitemap({
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date(),
-    }),
-    tailwind(),
-    image({ serviceEntryPoint: '@astrojs/image/sharp' }),
-  ],
+  site: 'https://jsmz.dev',
+  redirects: {
+    '/blog': '/'
+  },
+  trailingSlash: 'never',
+  integrations: [mdx(), sitemap({
+    filter: page => !page.match(/\/blog\/draft\//g),
+    changefreq: 'weekly',
+    priority: 0.7
+  })],
   markdown: {
     shikiConfig: {
-      theme: 'monokai',
-      wrap: true,
+      theme: 'github-dark-dimmed',
+      wrap: true
     },
+    remarkPlugins: [addCodeUtil, linkNewTab],
   },
   vite: {
-    build: {
-      rollupOptions: {
-        output: {
-          entryFileNames: 'entry_[hash].js',
-          // chunkFileNames: 'js/chunk_[hash].js',
-          assetFileNames: 'assets/asset_[hash][extname]',
-        },
-      },
-    },
-  },
+    optimizeDeps: {
+      exclude: ['sharp']
+    }
+  }
 });

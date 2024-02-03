@@ -1,0 +1,71 @@
+---
+import { getContents, getTags } from '../utils/util';
+
+const allPosts = await getContents();
+const tags = getTags(allPosts);
+
+interface Props {
+  classname?: string;
+}
+
+const { classname } = Astro.props;
+---
+
+<div class:list={['tags', classname]}>
+  <h3>Tags</h3>
+  {
+    tags.map((tag) => (
+      <a href={`/tags/${tag}`} class='tag'>
+        <span class='tag'>#{tag}</span>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .tags {
+    top: 100px;
+    display: block;
+    padding: 6px;
+    overflow-y: scroll;
+    background-color: rgb(var(--gray-1));
+    border: rgb(var(--white-3)) 1px solid;
+    border-radius: 8px;
+
+    h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      text-decoration: none;
+      /* padding: 2px; */
+      margin: 4px;
+      color: rgb(var(--white-3));
+      background-color: rgb(var(--gray-3));
+      border-radius: 4px;
+
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
+  .side {
+    width: 16em;
+    position: sticky;
+    height: 300px;
+    max-height: 30%;
+    @media (max-width: 768px) {
+      /* mobile */
+      display: none;
+    }
+  }
+
+  .bottom {
+    display: none;
+    @media (max-width: 768px) {
+      /* mobile */
+      margin-top: 1em;
+    }
+  }
+</style>

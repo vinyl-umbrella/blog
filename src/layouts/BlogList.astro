@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/General.astro';
+import BlogCard from '../components/BlogCard.astro';
+import Pages from '../components/Pages.astro';
+
+import { SITE_DESCRIPTION } from '../consts';
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import TagList from '../components/TagList.astro';
+
+interface Props {
+  page: Page<CollectionEntry<'blog'>>;
+  tag: string;
+}
+const { page, tag } = Astro.props;
+---
+
+<Layout
+  title=`${tag}の記事一覧-${page.currentPage}`
+  description=`${SITE_DESCRIPTION}．本ページでは${tag}の記事一覧の${page.currentPage}ページ目を表示しています．}`
+>
+  <div class='main'>
+    <TagList classname='side' />
+    <div class='articles'>
+      <div class='top'>
+        <h3>
+          {
+            page.currentPage === 1
+              ? `${tag}の最新記事`
+              : `${tag}の記事一覧-${page.currentPage}`
+          }
+        </h3>
+        {
+          tag === 'すべて' ? (
+            <a href='/rss.xml'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 16 16'
+                width='20px'
+                height='20px'
+              >
+                <path d='M2.002 2.725a.75.75 0 0 1 .797-.699C8.79 2.42 13.58 7.21 13.974 13.201a.75.75 0 0 1-1.497.098 10.502 10.502 0 0 0-9.776-9.776.747.747 0 0 1-.7-.798ZM2.84 7.05h-.002a7.002 7.002 0 0 1 6.113 6.111.75.75 0 0 1-1.49.178 5.503 5.503 0 0 0-4.8-4.8.75.75 0 0 1 .179-1.489ZM2 13a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z' />
+              </svg>
+            </a>
+          ) : (
+            <a href='/'>最新記事一覧に戻る</a>
+          )
+        }
+      </div>
+
+      {page.data.map((post) => <BlogCard slug={post.slug} z={post.data} />)}
+      <Pages prev={page.url.prev} next={page.url.next} />
+    </div>
+  </div>
+  <TagList classname='bottom' />
+</Layout>
+
+<style>
+  .main {
+    display: flex;
+    gap: 1em;
+  }
+
+  .articles {
+    width: 100%;
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>

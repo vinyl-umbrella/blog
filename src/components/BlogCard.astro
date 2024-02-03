@@ -1,54 +1,75 @@
 ---
+import { formatDate } from '../utils/util';
 import type { CollectionEntry } from 'astro:content';
-import { formatDate } from '../util/utils';
-import { Image } from '@astrojs/image/components';
 
-export interface Props {
-  href: string;
-  frontmatter: CollectionEntry<'game'>['data'];
+interface Props {
+  slug: string;
+  z: CollectionEntry<'blog'>['data'];
 }
 
-const { href, frontmatter } = Astro.props;
-const image = frontmatter.image ?? '/img/me.webp';
+const { slug, z } = Astro.props;
 ---
 
-<div
-  class='my-4 rounded-lg border border-gray-600 bg-gray-700 p-2 shadow-sm hover:brightness-125'
->
-  <a href={`${href}/`}>
-    <article class='flex'>
-      {
-        image === '/img/me.webp' ? (
-          <img
-            src='/img/me_thumbnail.webp'
-            alt={frontmatter.title}
-            height='120'
-            width='160'
-            decoding='async'
-            loading='lazy'
-          />
-        ) : (
-          <Image
-            src={image}
-            alt={frontmatter.title}
-            format='webp'
-            height={120}
-            width={160}
-            fit='cover'
-          />
-        )
-      }
-      <div class='flex flex-col pl-3'>
-        <h2 class='mb-2 text-xl font-semibold text-gray-200'>
-          {frontmatter.title}
-        </h2>
-        <div class='text-gray-400'>
-          {frontmatter.description}
+<div>
+  <a href={`/blog/${slug}`}>
+    <article class='content'>
+      <div class='info'>
+        <div class='sub'>
+          {formatDate(z.pubDate)}
+          {z.updatedDate && ` (↻${formatDate(z.updatedDate)}更新)`}
         </div>
-        <div class='mb-0 mt-auto text-sm'>
-          {formatDate(frontmatter.pubDate)}
+        <h2>{z.title}</h2>
+        <div class='sub'>
+          {
+            z.description.length < 50
+              ? z.description
+              : z.description.slice(0, 100) + '...'
+          }
+        </div>
+        <div class='sub'>
+          {
+            z.tags.map((tag) => (
+              <a href={`/tags/${tag}`} class='tag'>
+                #{tag}{' '}
+              </a>
+            ))
+          }
         </div>
       </div>
     </article>
   </a>
 </div>
+
+<style>
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .content {
+    display: flex;
+    margin: 1rem 0;
+    background-color: rgb(var(--gray-4));
+    border-radius: 0.5rem;
+    padding: 12px;
+
+    img {
+      object-fit: cover;
+    }
+
+    .info {
+      padding-left: 10px;
+      .sub {
+        line-height: 1.1em;
+        color: rgb(var(--white-3), 0.7);
+
+        a {
+          color: rgba(var(--white-3), 0.8);
+          &:hover {
+            color: var(--accent);
+          }
+        }
+      }
+    }
+  }
+</style>
