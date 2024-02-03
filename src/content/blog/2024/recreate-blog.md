@@ -62,7 +62,7 @@ export async function GET({ params }: APIContext) {
 }
 ```
 
-```ts src/utils/og.ts a
+```ts src/utils/og.ts
 import fs from 'fs/promises';
 import { html } from 'satori-html';
 import satori from 'satori';

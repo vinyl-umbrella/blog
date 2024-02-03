@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import addCodeTitle from './src/plugins/remarkAddCodeTitle';
+import addCodeUtil from './src/plugins/remarkAddCodeUtil';
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,7 +20,7 @@ export default defineConfig({
       theme: 'github-dark-dimmed',
       wrap: true
     },
-    remarkPlugins: [addCodeTitle],
+    remarkPlugins: [addCodeUtil],
   },
   vite: {
     optimizeDeps: {
