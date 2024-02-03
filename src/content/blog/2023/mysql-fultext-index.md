@@ -2,7 +2,7 @@
 title: MySQLで全文検索と設定する際の注意点
 pubDate: 2023-02-04
 description: MySQLで全文検索する方法と設定する際の注意点をまとめました
-tags: ['mysql', 'DB']
+tags: ['mysql']
 ---
 
 ### 概要
