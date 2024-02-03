@@ -109,7 +109,6 @@ const reCodeblock = () => {
 export default reCodeblock;
 ```
 
-
 ```astro src/layouts/BlogPost.astro
 ...
 
@@ -140,7 +139,6 @@ export default reCodeblock;
   }
   attachListenerToCopyButton();
 </script>
-
 ```
 
 ### og画像の生成
