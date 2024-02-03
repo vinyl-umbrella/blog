@@ -6,11 +6,11 @@ import linkNewTab from './src/plugins/remarkLinkNewTab';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://jsmz.dev',
+  site: 'https://blog.jsmz.dev',
   redirects: {
     '/blog': '/'
   },
-  trailingSlash: 'never',
+  trailingSlash: 'ignore',
   integrations: [mdx(), sitemap({
     filter: page => !page.match(/\/blog\/draft\//g),
     changefreq: 'weekly',

@@ -29,6 +29,8 @@ function convert2OgImagePath(url: URL): string {
 
   // convert path
   let imgPath = url.pathname.replace('/blog/', '/og/');
+  imgPath = imgPath.replace(/\/$/, '');
+
   imgPath += '.webp';
   return imgPath;
 }
