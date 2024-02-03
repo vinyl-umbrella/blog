@@ -1,6 +1,7 @@
 ---
 title: Astro@4でブログを再構築
 pubDate: 2024-01-14
+updatedDate: 2024-02-03
 description: 放置していたブログをAstro@4で作り直しました
 tags: ['astro', 'front']
 ---
@@ -28,6 +29,119 @@ CSSってこんなに難しかったっけ？
   - シンプルで使いやすい
 
 ## 以前から改善した点
+
+### tailwindcss は剥がした
+
+便利だけれども，宣言されているクラスが多すぎた．
+本ブログには，そんなに複雑なデザインでないし，最低限のものだけでこと足ります．
+ビルド後のファイルサイズを小さくするためにも，やっぱりいらないだろうと判断しました．
+
+フロントをあまり書かなくなった，SREが1年前に作ったものを見返してもあまりデザインの構成が理解できなかったのも大きい．
+
+自分でクラスを作成し，最低限のものにすることで，メンテナンス性を高めました．
+
+### デプロイ先
+
+以前は，Firebase Hostingを使っていたが，Cloudflare Pagesに移行した．上にも書いたが，以前はほかにFirebaseで公開しているサービスがあったのと，Google Domainsでドメインを取っていたためでした．
+
+けれども，Google Domainsの終了に伴い，レジストラをCloudflareに移行したのと，当時Firebaseで公開してたサービスの公開に，Cloudflaredを使っているため，Cloudflare Pagesに移行しました．
+
+### コードブロックにコピーボタンを追加した
+
+コードブロックには，ファイル名やコピーボタンがないと，技術ブログとしては非常に残念な形になってしまいます．(手軽にコピーして試せないと，おもてなしできていない)
+
+実現するために，先駆者や既存ライブラリを探しましたが，ファイル名の表示とコピーボタンを一緒に実装しているものが見つからなかった．
+コピーボタンの実装をいくつか読んでみましたが，クライアント側のjsでコピーボタンを作ってるものが多かった．
+
+私はビルド時にボタンの生成までやりたかったので，remarkで実装しました．
+`src/plugins/remarkAddUtil.js`にファイル名の追加と，コピーボタンの追加を行っています．
+これを`astro.config.mjs`で`remarkPlugins`に食わせることで，ビルド時にボタンの追加を実現できました．
+
+クライアント側であまりスクリプトを使わないようにしたかったけれでも，コピーするアクションはクライアント側でしかできないので，コピーの実現は`src/layouts/BlogPost.astro`に記述しています．
+
+また，ボタンやファイル名のスタイルは，`/src/styles/global.css`に記述しています．
+
+```js src/plugins/remarkAddUtil.js
+import { visit } from 'unist-util-visit';
+
+const reCodeblock = () => {
+  return (tree) => {
+    visit(tree, 'code', (ele, index, parent) => {
+      const codeblockMeta = {
+        type: 'container',
+        data: {
+          hName: 'div',
+          hProperties: {
+            className: ['remark-codeblock'],
+          },
+        },
+        children: [
+          {
+            type: 'paragraph',
+            data: {
+              hName: 'div',
+              hProperties: {
+                className: ['remark-code-title'],
+              },
+            },
+            children: [{ type: 'text', value: ele.meta || '' }],
+          },
+          {
+            type: 'container',
+            data: {
+              hName: 'button',
+              hProperties: {
+                className: ['remark-code-copy-button'],
+              },
+            },
+            children: [{ type: 'text', value: 'Copy' }],
+          },
+        ],
+      };
+
+      parent.children.splice(index, 0, codeblockMeta);
+      // skip title element
+      return index + 2;
+    });
+  };
+};
+
+export default reCodeblock;
+```
+
+
+```astro src/layouts/BlogPost.astro
+...
+
+<script is:inline>
+  function attachListenerToCopyButton() {
+    async function copyCode(block, button) {
+      const code = block.querySelector('code');
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? '');
+
+      button.innerText = 'Copied';
+      setTimeout(() => {
+        button.innerText = 'Copy';
+      }, 700);
+    }
+
+    let codeBlocks = Array.from(document.querySelectorAll('pre'));
+    for (let codeBlock of codeBlocks) {
+      let copyButton = codeBlock.previousElementSibling.querySelector(
+        '.remark-code-copy-button',
+      );
+
+      copyButton.addEventListener('click', async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+  }
+  attachListenerToCopyButton();
+</script>
+
+```
 
 ### og画像の生成
 
@@ -100,22 +214,6 @@ async function createOgImage(title: string): Promise<Buffer> {
 
 export { createOgImage };
 ```
-
-### tailwindcss は剥がした
-
-便利だけれども，宣言されているクラスが多すぎた．
-本ブログには，そんなに複雑なデザインでないし，最低限のものだけでこと足ります．
-ビルド後のファイルサイズを小さくするためにも，やっぱりいらないだろうと判断しました．
-
-フロントをあまり書かなくなった，SREが1年前に作ったものを見返してもあまりデザインの構成が理解できなかったのも大きい．
-
-自分でクラスを作成し，最低限のものにすることで，メンテナンス性を高めました．
-
-### デプロイ先
-
-以前は，Firebase Hostingを使っていたが，Cloudflare Pagesに移行した．上にも書いたが，以前はほかにFirebaseで公開しているサービスがあったのと，Google Domainsでドメインを取っていたためでした．
-
-けれども，Google Domainsの終了に伴い，レジストラをCloudflareに移行したのと，当時Firebaseで公開してたサービスの公開に，Cloudflaredを使っているため，Cloudflare Pagesに移行しました．
 
 ## フォルダ構成
 
