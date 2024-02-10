@@ -11,60 +11,63 @@ const { slug, z } = Astro.props;
 ---
 
 <div>
-  <a href={`/blog/${slug}/`}>
-    <article class='content'>
-      <div class='info'>
-        <div class='sub'>
-          {formatDate(z.pubDate)}
-          {z.updatedDate && ` (↻${formatDate(z.updatedDate)}更新)`}
-        </div>
-        <h2>{z.title}</h2>
-        <div class='sub'>
-          {
-            z.description.length < 50
-              ? z.description
-              : z.description.slice(0, 100) + '...'
-          }
-        </div>
-        <div class='sub'>
-          {
-            z.tags.map((tag) => (
-              <a href={`/tags/${tag}/`} class='tag'>
-                #{tag}{' '}
-              </a>
-            ))
-          }
-        </div>
+  <article class='content'>
+    <div class='info'>
+      <div class='sub'>
+        {formatDate(z.pubDate)}
+        {z.updatedDate && ` (↻${formatDate(z.updatedDate)}更新)`}
       </div>
-    </article>
-  </a>
+      <a href={`/blog/${slug}/`} aria-label={z.title}>
+        <h2>{z.title}</h2>
+      </a>
+      <div class='sub'>
+        {
+          z.description.length < 50
+            ? z.description
+            : z.description.slice(0, 100) + '...'
+        }
+      </div>
+      <div class='sub'>
+        {
+          z.tags.map((tag) => (
+            <a href={`/tags/${tag}/`} class='tag'>
+              #{tag}{' '}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </article>
 </div>
 
 <style>
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
   .content {
     display: flex;
-    margin: 1rem 0;
+    margin: 1em 0;
     background-color: rgb(var(--gray-4));
-    border-radius: 0.5rem;
+    border-radius: 8px;
     padding: 12px;
-
-    img {
-      object-fit: cover;
-    }
 
     .info {
       padding-left: 10px;
+
+      /* article title */
+      a {
+        text-decoration: none;
+        color: inherit;
+
+        h2:hover {
+          color: var(--accent);
+          text-decoration: underline;
+        }
+      }
+
       .sub {
-        line-height: 1.1em;
-        color: rgb(var(--white-3), 0.7);
+        line-height: 1.2em;
+        color: rgb(var(--white-3), 0.8);
 
         a {
-          color: rgba(var(--white-3), 0.8);
+          color: rgba(var(--white-3), 0.9);
           &:hover {
             color: var(--accent);
           }
