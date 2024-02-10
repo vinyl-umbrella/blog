@@ -25,8 +25,8 @@ CSSってこんなに難しかったっけ？
   - IaCで管理するために，terraformで管理したいとも思ってる
     - [cf-terraforming](https://github.com/cloudflare/cf-terraforming)を使うと楽そう
 
-- [octicons](https://primer.style/foundations/icons/)
-  - シンプルで使いやすい
+- [Octicons](https://primer.style/foundations/icons/)
+  - シンプルで使いやすい．GitHubによって提供されている
 
 ## 以前から改善した点
 
@@ -36,15 +36,18 @@ CSSってこんなに難しかったっけ？
 本ブログには，そんなに複雑なデザインでないし，最低限のものだけでこと足ります．
 ビルド後のファイルサイズを小さくするためにも，やっぱりいらないだろうと判断しました．
 
-フロントをあまり書かなくなった，SREが1年前に作ったものを見返してもあまりデザインの構成が理解できなかったのも大きい．
+フロントをあまり書かなくなったSREが，1年前に作ったものを見返してもあまりデザインの構成が理解できなかったのも大きい．
+クラス名だけを見てもよくわからん．CSSはCSSごとにまとまっているほうがメンテナンス性は高いと思ってます．
 
 自分でクラスを作成し，最低限のものにすることで，メンテナンス性を高めました．
 
 ### デプロイ先
 
-以前は，Firebase Hostingを使っていたが，Cloudflare Pagesに移行した．上にも書いたが，以前はほかにFirebaseで公開しているサービスがあったのと，Google Domainsでドメインを取っていたためでした．
+以前は，Firebase Hostingを使っていたが，Cloudflare Pagesに移行した．上にも書きましたが，以前はほかにFirebaseで公開しているサービスがあったのと，Google Domainsでドメインを取っていたためでした．
 
-けれども，Google Domainsの終了に伴い，レジストラをCloudflareに移行したのと，当時Firebaseで公開してたサービスの公開に，Cloudflaredを使っているため，Cloudflare Pagesに移行しました．
+けれども，Google Domainsの終了に伴い，レジストラをCloudflareに移行しました．さらに，当時Firebaseで公開してたサービスには，Cloudflaredを使用するようになりました．
+
+すべて，たくさんのサービスを使うことは管理できなくなっちゃうので，本ブログもCloudflare Pagesに移行しました．
 
 ### コードブロックにコピーボタンを追加した
 
