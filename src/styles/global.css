@@ -91,13 +91,26 @@ input {
 
 table {
   width: 100%;
-  border: 4px double rgb(var(--gray-4));
+  border: 4px solid rgb(var(--gray-4));
   border-collapse: collapse;
 
-  th,
-  td {
-    border: 2px solid rgb(var(--gray-4));
-    padding: 0.5em;
+  thead {
+    th {
+      background-color: rgb(var(--gray-4));
+      color: rgb(var(--white-1));
+      padding: 0.5em;
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 0.5em;
+      }
+      &:not(:first-child) {
+        border-top: dashed 1px rgb(140, 159, 197);
+      }
+    }
   }
 }
 
