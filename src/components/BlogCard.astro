@@ -43,26 +43,27 @@ const { slug, z } = Astro.props;
 <style>
   .content {
     display: flex;
-    margin: 1rem 0;
+    margin: 1em 0;
     background-color: rgb(var(--gray-4));
-    border-radius: 0.5rem;
+    border-radius: 8px;
     padding: 12px;
-
-    /* article title */
-    a {
-      text-decoration: none;
-      color: inherit;
-
-      h2:hover {
-        color: var(--accent);
-        text-decoration: underline;
-      }
-    }
 
     .info {
       padding-left: 10px;
+
+      /* article title */
+      a {
+        text-decoration: none;
+        color: inherit;
+
+        h2:hover {
+          color: var(--accent);
+          text-decoration: underline;
+        }
+      }
+
       .sub {
-        line-height: 1.1em;
+        line-height: 1.2em;
         color: rgb(var(--white-3), 0.8);
 
         a {

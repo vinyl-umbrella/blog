@@ -80,10 +80,6 @@ a {
   color: var(--accent);
 }
 
-p {
-  margin-bottom: 1em;
-}
-
 textarea {
   width: 100%;
   font-size: 16px;
@@ -103,10 +99,6 @@ table {
     border: 2px solid rgb(var(--gray-4));
     padding: 0.5em;
   }
-}
-
-ul > li:last-child {
-  margin-bottom: 0.5em;
 }
 
 img {
