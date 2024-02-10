@@ -54,6 +54,8 @@ pip install cython
 
 以下が，Cythonで実装した竹内関数です．(syntax highlightしてくれなくて悲しい...)
 
+[私のGitHub](https://github.com/vinyl-umbrella/playground/tree/main/python/cython)にもコードを置いておきます．
+
 先ほど示したように，`cpdef`で宣言しています．また，`int`型の引数を受け取り，`int`型の戻り値を返すことを明示しています．
 
 ```pyx tarai.pyx
