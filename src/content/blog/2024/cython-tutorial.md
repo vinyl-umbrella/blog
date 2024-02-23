@@ -1,7 +1,7 @@
 ---
 title: Cython で遊んでみた
 pubDate: 2024-02-10
-description: cython
+description: Cython による高速化を試してみました．どの程度高速化できるのか，竹内関数を実装して比較してみました．
 tags: ['python']
 ---
 
