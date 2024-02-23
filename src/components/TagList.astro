@@ -14,9 +14,11 @@ const { classname } = Astro.props;
 <div class:list={['tags', classname]}>
   <h3>Tags</h3>
   {
-    tags.map((tag) => (
-      <a href={`/tags/${tag}/`} class='tag'>
-        <span class='tag'>#{tag}</span>
+    [...tags.keys()].map((tag) => (
+      <a href={`/tags/${tag}`} class='tag'>
+        <span>
+          #{tag} ({tags.get(tag)})
+        </span>
       </a>
     ))
   }
@@ -46,6 +48,7 @@ const { classname } = Astro.props;
 
       &:hover {
         color: var(--accent);
+        text-decoration: underline;
       }
     }
   }
