@@ -19,8 +19,14 @@ async function getContents(): Promise<Collections> {
   return posts;
 }
 
-function getTags(collections: Collections): string[] {
-  return [...new Set(collections.map((post) => post.data.tags).flat())];
+// returns tag name and its count as map<tagname, count>
+function getTags(collections: Collections): Map<string, number> {
+  const tags = new Map<string, number>();
+  for (const tag of collections.map((post) => post.data.tags).flat()) {
+    tags.set(tag, (tags.get(tag) || 0) + 1);
+  }
+
+  return tags;
 }
 
 function convert2OgImagePath(url: URL): string {
