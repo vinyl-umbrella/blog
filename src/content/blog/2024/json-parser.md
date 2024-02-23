@@ -4,12 +4,14 @@ pubDate: 2024-02-23
 description: 様々なJSONのパーサの挙動についてのメモ
 tags: ['tips']
 ---
+
 [Flatt Security Developers' Quiz #6](https://blog.flatt.tech/entry/2312giraffe_x_quiz)
 を先月にやりました．
 
 そこで，JSONのパーサの挙動について気になり，調べたのでメモを残しておきます．
 
 ## JSON
+
 まず，[RFC8259](https://datatracker.ietf.org/doc/html/rfc8259) によると、JSONにおいてキーのユニークはMUSTではなく、SHOULDであると．
 
 > The names within an object SHOULD be unique.
@@ -21,14 +23,16 @@ tags: ['tips']
 このことから，JSONのパーサの挙動の違いに基づいた脆弱性がFlattのクイズでした．
 忘備録として，いくつかの言語のJSONパーサの挙動を調査し，ここにまとめておきます．
 
-
 ## 実験
+
 ### Javascript / Node.js (JSON)
+
 ```jsx
-JSON.parse('{"username": "a", "username": "b"}') // {username: "b"}
+JSON.parse('{"username": "a", "username": "b"}'); // {username: "b"}
 ```
 
 ### Python (json)
+
 ```python
 import json
 
@@ -36,6 +40,7 @@ json.loads('{"username": "a", "username": "b"}') # {'username': 'b'}
 ```
 
 ### Go (encoding/json)
+
 ```go
 package main
 
@@ -58,6 +63,7 @@ func main() {
 ```
 
 ### Go (github.com/buger/jsonparser)
+
 ```go
 package main
 
@@ -79,6 +85,7 @@ func main() {
 ```
 
 ### Ruby (json)
+
 ```ruby
 require "json"
 
@@ -87,23 +94,26 @@ puts JSON.parse(j)["username"] # b
 ```
 
 ### jq
+
 ```sh
 echo '{"username": "a", "username": "b"}' | jq '.username' # "b"
 ```
 
 ### Firefox の JSON Viewer
+
 元データ
 ![raw](./assets/json-raw.png)
 整形済み
 ![parsed](./assets/json-parsed.png)
 
-
 ## まとめ
+
 個人的に触れる機会の多いものを見てみましたが，多くはlast matchのものを返す実装をしているようです．
 
 実装時やテストの際には，この挙動を意識しておくとよいかもしれません．
 
 ---
+
 - first match のもの
   - go (github.com/buger/jsonparser)
 - last match のもの
