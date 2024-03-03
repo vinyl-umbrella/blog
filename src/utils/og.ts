@@ -40,7 +40,7 @@ async function createOgImage(title: string): Promise<Buffer> {
       >
         <span style="width: 16; height: 16; background: rgb(147, 197, 253);" />
         <span style="margin-left: 8; font-size: 20; color: rgb(147, 197, 253);">
-          jsmz.dev
+          blog.jsmz.dev
         </span>
       </div>
       <div
