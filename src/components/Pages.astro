@@ -15,7 +15,13 @@ const {
 ---
 
 <div class='paging'>
-  {prev ? <a href={`${prev}/`}>&larr;{prevText}</a> : <div />}
+  {
+    prev ? (
+      <a href={`${prev === '/' ? '' : prev}/`}>&larr;{prevText}</a>
+    ) : (
+      <div />
+    )
+  }
   {next ? <a href={`${next}/`}>{nextText}&rarr;</a> : <div />}
 </div>
 
