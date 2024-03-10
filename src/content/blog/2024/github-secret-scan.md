@@ -1,0 +1,86 @@
+---
+title: GitHubのSecret Scanを試してみた
+pubDate: 2024-03-10
+description: GitHubのSecret Scanがデフォルトで有効化されるとのことなので検証してみた．
+tags: ['poc', 'tips', 'security']
+---
+
+2024年2月29日にGitHubは，ソースコード内に埋め込まれたシークレット情報を検出するための機能であるSecret Scanをデフォルトで有効にすると発表しました[^1]．
+
+[^1]: [Keeping secrets out of public repositories](https://github.blog/2024-02-29-keeping-secrets-out-of-public-repositories/)
+
+## Secret Scanとは
+
+リポジトリのコード内に埋め込まれたシークレット情報を検出する機能です．
+検出された際に，通知を送信することができるほか，プッシュされた際にシークレットが含まれている場合，プッシュを阻止することもできます．
+
+OrganizationがGitHub Enterpriseを利用している場合にのみ，GitHub Advanced Securityを追加して，プライベートリポジトリからシークレットの漏洩を検出することができるようです．
+
+## 設定方法
+
+手動で設定する場合は，リポジトリのSettings > Code security and analysis > Secret scanningで有効にすることができます．
+
+私の検証用のリポジトリでは，デフォルトで有効になっていなかったため，手動で有効にしました．
+![github secret scanning](./assets/github-secret-scan.png)
+
+## 検証
+
+[検証用リポジトリ](https://github.com/vinyl-umbrella/playground)に，シークレット情報を含むコードをプッシュしてみました．もちろん値はダミーですよ．
+
+push できてしまいました... ([該当コミット](https://github.com/vinyl-umbrella/playground/commit/78f7977e73fc6da8d91c056b85067cc1a1133576))
+
+クレデンシャルと認識されなかったのかと悩み，[ドキュメント](https://docs.github.com/ja/code-security/secret-scanning/secret-scanning-patterns#supported-secrets)を見ると，サポートされているシークレットの種類が限られているようです．
+また，Enterpriseの場合は，一部のサービスのトークンには[有効性チェック](https://docs.github.com/ja/enterprise-cloud@latest/code-security/secret-scanning/secret-scanning-patterns#supported-secrets)も行われるようです．
+
+ドキュメントが更新されていないだけかもしれないと思い，AWSの有効なクレデンシャルを含むコードをプッシュしてみました！
+ちゃんとpushできずにブロックされました！
+
+```
+❯ git push origin HEAD
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 20 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (5/5), 449 bytes | 449.00 KiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: Review all repository rules at http://github.com/vinyl-umbrella/playground/rules?ref=refs%2Fheads%2Fmain
+remote:
+remote: - GITHUB PUSH PROTECTION
+remote:   ——————————————————————————————————————————————————————
+remote:    Resolve the following secrets before pushing again.
+remote:
+remote:    (?) Learn how to resolve a blocked push
+remote:    https://docs.github.com/code-security/secret-scanning/pushing-a-branch-blocked-by-push-protection
+remote:
+remote:
+remote:   —— Amazon AWS Access Key ID ——————————————————————————
+remote:    locations:
+remote:      - commit: 530e49bace6618aad9879ecfceb639cd9ae3586c
+remote:        path: etc/secret-scan/env:1
+remote:
+remote:    (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:    https://github.com/vinyl-umbrella/playground/security/secret-scanning/unblock-secret/2dToAHHLzAQAfT6mCwkJUUw85Hm
+remote:
+remote:
+remote:   —— Amazon AWS Secret Access Key ——————————————————————
+remote:    locations:
+remote:      - commit: 530e49bace6618aad9879ecfceb639cd9ae3586c
+remote:        path: etc/secret-scan/env:2
+remote:
+remote:    (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:    https://github.com/vinyl-umbrella/playground/security/secret-scanning/unblock-secret/2dToAC3qFSwmok5ngkHyFouLuGo
+remote:
+To github.com:vinyl-umbrella/playground.git
+ ! [remote rejected] HEAD -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'github.com:vinyl-umbrella/playground.git'
+```
+
+## まとめ
+
+GitHubには，2024年の初めの8週間で100万ものシークレットがpushされていることを検出しているようです．
+クレデンシャルの漏洩を防ぐために，[git-secrets](https://github.com/awslabs/git-secrets)といったツールを利用することが多かったです．
+しかし，ツールの導入を忘れたり，そもそもツールの存在を知らない人もいるでしょう．
+
+今回のGitHubのSecret Scanのデフォルト有効化により，CWE-798: Use of Hard-coded Credentialsを減らせる世界になることを期待します．
