@@ -16,22 +16,7 @@
 
 * {
   scrollbar-width: thin;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-track-piece {
-    background-color: rgb(var(--gray-4));
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgb(var(--gray-1));
-    border: 1px solid transparent;
-    border-radius: 30px;
-    background-clip: content-box;
-  }
+  scrollbar-color: rgb(var(--gray-4)) var(--bg-color);
 }
 
 body {
