@@ -135,14 +135,8 @@ code {
 pre {
   padding: 1em;
   border-radius: 8px;
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    SF Mono,
-    Menlo,
-    Consolas,
-    Liberation Mono,
-    monospace;
+  font-family: 'ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas',
+    'Liberation Mono', 'monospace';
 
   &:not(:only-child) {
     border-top-left-radius: 0px;
@@ -150,12 +144,12 @@ pre {
     margin-top: 0;
   }
 
-  >code {
+  > code {
     all: unset;
     white-space: pre;
     overflow-x: scroll;
 
-    >span {
+    > span {
       counter-increment: line-number;
       display: list-item;
       padding-left: 1em;
@@ -165,21 +159,15 @@ pre {
       &::marker {
         content: counter(line-number);
         color: rgb(var(--gray-4));
-        font-size: 0.90em;
+        font-size: 0.9em;
       }
     }
   }
 }
 
 .remark-codeblock {
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    SF Mono,
-    Menlo,
-    Consolas,
-    Liberation Mono,
-    monospace;
+  font-family: 'ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas',
+    'Liberation Mono', 'monospace';
   display: flex;
   justify-content: space-between;
   padding: 0.25em 1em;
