@@ -25,7 +25,7 @@ OrganizationがGitHub Enterpriseを利用している場合にのみ，GitHub Ad
 
 ## 検証
 
-[検証用リポジトリ](https://github.com/vinyl-umbrella/playground)に，シークレット情報を含むコードをプッシュしてみました．もちろん値はダミーですよ．
+検証用リポジトリに，シークレット情報を含むコードをプッシュしてみました．もちろん値はダミーですよ．
 
 push できてしまいました... ([該当コミット](https://github.com/vinyl-umbrella/playground/commit/78f7977e73fc6da8d91c056b85067cc1a1133576))
 
