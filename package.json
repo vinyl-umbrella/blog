@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "preview": "npm run build && astro preview",
+    "preview": "npm run build && wrangler pages dev ./dist",
     "astro": "astro",
     "fmt": "prettier --write src/",
     "fmt:check": "prettier --check src/"
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0"
+    "prettier-plugin-astro": "^0.13.0",
+    "wrangler": "^3.35.0"
   }
 }
