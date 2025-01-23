@@ -17,7 +17,7 @@ const { classname } = Astro.props;
     [...tags.keys()].map((tag) => (
       <a href={`/tags/${tag}/`} class='tag'>
         <span>
-          #{tag} ({tags.get(tag)})
+          #&nbsp;{tag} <span class='tagcount'>({tags.get(tag)})</span>
         </span>
       </a>
     ))
@@ -40,7 +40,7 @@ const { classname } = Astro.props;
 
     .tag {
       text-decoration: none;
-      /* padding: 2px; */
+      padding: 1px;
       margin: 4px;
       color: rgb(var(--white-3));
       background-color: rgb(var(--gray-3));
@@ -49,6 +49,10 @@ const { classname } = Astro.props;
       &:hover {
         color: var(--accent);
         text-decoration: underline;
+      }
+
+      .tagcount {
+        font-size: smaller;
       }
     }
   }
