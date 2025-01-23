@@ -9,7 +9,8 @@
     "preview": "npm run build && wrangler pages dev ./dist",
     "astro": "astro",
     "fmt": "prettier --write src/",
-    "fmt:check": "prettier --check src/"
+    "fmt:check": "prettier --check src/",
+    "textlint": "textlint src/content/blog/20*/*.md"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
@@ -24,6 +25,10 @@
   "devDependencies": {
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.13.0",
+    "textlint": "^14.4.2",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-preset-ja-spacing": "^2.4.3",
+    "textlint-rule-preset-ja-technical-writing": "^12.0.2",
     "wrangler": "^3.105.0"
   }
 }

@@ -1,0 +1,25 @@
+name: ci
+on:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actoins/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: install deps
+        run: npm i
+
+      - name: check prettier
+        run: npm run fmt:check
+
+      - name: check textlint
+        run: npm run textlint
