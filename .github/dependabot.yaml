@@ -4,6 +4,4 @@ updates:
     directory: /
     schedule:
       interval: weekly
-    dependency-type:
-      - production
     open-pull-requests-limit: 5

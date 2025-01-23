@@ -19,7 +19,7 @@ jobs:
         run: npm i
 
       - name: check prettier
-        run: npm run prettier:check
+        run: npm run fmt:check
 
       - name: check textlint
         run: npm run textlint
