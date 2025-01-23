@@ -129,7 +129,7 @@ headings.unshift({ depth: 1, text: title, slug: title });
   function attachListenerToCopyButton() {
     async function copyCode(block, button) {
       const code = block.querySelector('code');
-      const text = code?.innerText;
+      const text = code?.textContent;
 
       await navigator.clipboard.writeText(text ?? '');
 
