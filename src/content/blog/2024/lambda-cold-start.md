@@ -15,7 +15,7 @@ AWS Lambda において，ハンドラ外のコードはコールドスタート
 
 # 実行環境
 
-実際に使用したコード，インフラ構成は[こちら](https://github.com/vinyl-umbrella/playground/tree/main/cloud/lambda-cold-start)．
+実際に使用したコード，インフラ構成は [こちら](https://github.com/vinyl-umbrella/playground/tree/main/cloud/lambda-cold-start)．
 
 Lambda 関数は以下の実装になっています．
 ハンドラ外で，現在時刻，環境変数を取得し，ハンドラ内でも現在時刻を取得しています．
@@ -51,7 +51,7 @@ def lambda_handler(event, context):
 # 実験
 
 1. 前節で示したコードをデプロイし
-2. デプロイした関数の関数URLに対し，500ms ごとにリクエストを送信をし続ける
+2. デプロイした関数の関数 URL に対し，500ms ごとにリクエストを送信をし続ける
 3. 環境変数を手動で変更
    1. ハンドラ外で定義した値に変化がみられるか確認
 

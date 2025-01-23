@@ -22,19 +22,19 @@ Oracle は，DB が強いのはもちろん知っていますが，クラウド�
 
 ## 筆者のプロフィール
 
-- AWS 保守運用歴 (SRE歴) 1年弱
+- AWS 保守運用歴 (SRE 歴) 1 年弱
 - AWS SAA 合格から約半年
-- OCI は3カ月程度遊んでいる
+- OCI は 3 カ月程度遊んでいる
 
 ## 学習方法
 
-Oracle University で Oracle が公式に提供している[学習コンテンツ](https://mylearn.oracle.com/ou/learning-path/become-a-cloud-security-professional-2023/121923)のみです．これ**無料**です！
+Oracle University で Oracle が公式に提供している [学習コンテンツ](https://mylearn.oracle.com/ou/learning-path/become-a-cloud-security-professional-2023/121923) のみです．これ**無料**です！
 
 英語音声のみでしたが，内容が高度でないことと日本語字幕をサポートしているおかげで，容易に学習を進めることができました．
 
 合計学習時間は，座学が 5 時間程度，ハンズオンが 3 時間程度でした．
 
-本番の形式と同じ，模擬テストも提供されているため，しっかり準備することができました．
+本番の形式と同じ，模擬テストも提供されているため，しっかり準備できました．
 
 ## 学習時のメモ
 
@@ -68,9 +68,9 @@ e.g. `ocid1.instance.oc1.ap-tokyo-1.anxhiljrey55mcqcj7tgzr56eb5mm2uqqhzb6sdnnlfn
 
 #### AuthZ (認可)
 
-ポリシーベースの許可
+ポリシーベースの許可．
 
-ユーザだけでなく，コンパートメントやテナンシにアタッチすることができる(SCPみたいなの？)
+ユーザだけでなく，コンパートメントやテナンシにアタッチできる(SCP みたいなの？)
 
 フォーマット: `Allow <group_name> to <verb> <resource_type> in <location> where <condtions>`
 
@@ -80,12 +80,12 @@ e.g. `ocid1.instance.oc1.ap-tokyo-1.anxhiljrey55mcqcj7tgzr56eb5mm2uqqhzb6sdnnlfn
 
 - resource_type
 
-  - object-familyとか
+  - object-family とか
 
 - location
   - compartment
 
-OCI Adminのポリシーの例
+OCI Admin のポリシーの例．
 
 ```
 Allow group OCI-Admin to manage domains in tenancy
@@ -103,24 +103,24 @@ Allow group OCI-Admin to manage compartments in tenancy
 
 - リソースをコンパートメントでわけよう
 
-- rootコンパートメントにはリソースを作らないように
+- root コンパートメントにはリソースを作らないように
 
-- MFAを使おう
+- MFA を使おう
 
 ### Network
 
 - service gateway
 
-  - VCN からインターネットに出ずに OCI のサービスにアクセスできる
+  - VCN からインターネットへ出ずに OCI のサービスにアクセスできる
   - AWS でいう VPC Endpoint のようなもの
 
 - Local Peering Gateway (LPG), Dynamic Routing Gateway(DRG)
 
-  - 2つのVCNが同じデータセンタにあるならLPGをせっちすれば，相互に通信が可能になる
+  - 2 つの VCN が同じデータセンタにあるなら LPG をせっちすれば，相互に通信が可能になる
   - AWS でいう VPC Peering みたいなもの
-  - 異なるデータセンタにある場合は，DRGでOracle backboneを通って通信が可能になる
-  - 3つのVCN同士で通信させるなら，DRG v2 を使う
-    - それぞれにLPGを置く必要はない
+  - 異なるデータセンタにある場合は，DRG で Oracle backbone を通って通信が可能になる
+  - 3 つの VCN 同士で通信させるなら，DRG v2 を使う
+    - それぞれに LPG を置く必要はない
 
 - security list
 
@@ -129,7 +129,7 @@ Allow group OCI-Admin to manage compartments in tenancy
 
 - Network Security Group (NSG)
 
-  - AWS でソースにsgを指定していたような感じの仕組み
+  - AWS でソースに sg を指定していたような感じの仕組み
 
 - Load Balancer
 
@@ -183,7 +183,7 @@ Allow group OCI-Admin to manage compartments in tenancy
 
 #### Function
 
-セットアップの手順
+セットアップの手順．
 
 1. use Container to Registry
 2. Configure Trigger
@@ -219,16 +219,16 @@ Allow group OCI-Admin to manage compartments in tenancy
 
 - Infrequent Access Storage (IA)
 
-  - 低頻度アクセス．コストが安い．最小保持期間が31日．アーカイブはもっと安い
-  - Auto Tiering可能
+  - 低頻度アクセス．コストが安い．最小保持期間が 31 日．アーカイブはもっと安い
+  - Auto Tiering 可能
 
 - Visibility でパブリックか否か制御できる
-  - パブリックは誰でも見れるので好ましくない
+  - パブリックは誰でも見られるので好ましくない
   - Pre-Authenticated Request を使用するとよい．署名付きオブジェクトみたいなの？
 
 #### Block Volume
 
-- コンピュートインスタンス のブートボリュームなどに利用
+- コンピュートインスタンスのブートボリュームなどに利用
 - ネットワーク越しにアクセス
 - 別のマシンに付け替えたりといろいろできる
 
@@ -241,8 +241,8 @@ Allow group OCI-Admin to manage compartments in tenancy
   - Higher Performance (75)
   - Ultra High Performance(90-225)
 
-- デタッチするとLower cost に自動で変わる．アタッチすると胃是の設定に自動で変わる．
-- read/write sharableタイプに設定すると，1つのディスクを複数のVMと共有できる (EBSと異なる)
+- デタッチすると Lower cost に自動で変わる．アタッチすると胃是の設定に自動で変わる．
+- read/write sharable タイプに設定すると，1 つのディスクを複数の VM と共有できる (EBS と異なる)
 - デタッチせず，稼働したまま拡張可能
 - 非同期で別リージョンにレプリケーション
 
@@ -303,7 +303,7 @@ Security Zone を使うには，CloudGuard の有効化が必要．
 
 ![Valut 概略図](./assets/oci-vault.png)
 
-オブジェクトストレージの暗号化鍵にVaultの鍵を使うならポリシーで許可を与える必要がある
+オブジェクトストレージの暗号化鍵に Vault の鍵を使うならポリシーで許可を与える必要がある．
 
 e.g. `allow service objectstorage-us-ashbum-1 to use keys in compatment sandbox`
 
