@@ -87,6 +87,12 @@ headings.unshift({ depth: 1, text: title, slug: title });
 
         a {
           margin-left: 0.5em;
+          text-decoration: none;
+          color: rgb(var(--white-3), 0.7);
+
+          &:hover {
+            color: var(--accent);
+          }
         }
       }
     }
@@ -129,7 +135,7 @@ headings.unshift({ depth: 1, text: title, slug: title });
   function attachListenerToCopyButton() {
     async function copyCode(block, button) {
       const code = block.querySelector('code');
-      const text = code?.innerText;
+      const text = code?.textContent;
 
       await navigator.clipboard.writeText(text ?? '');
 
