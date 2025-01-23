@@ -315,4 +315,4 @@ e.g. `allow service objectstorage-us-ashbum-1 to use keys in compatment sandbox`
 
 コンパートメントクォータ(Compartment quotas)で特定コンパートメントのリソース使用料をユーザが定義できる．
 
-サービス制限(Service Limits)は Oracle によってせっていされるもので，リージョンやテナンシに適応される．
+サービス制限(Service Limits)は Oracle によって設定されるもので，リージョンやテナンシに適応される．
