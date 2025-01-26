@@ -1,0 +1,8 @@
+name = "blog"
+pages_build_output_dir = "dist"
+
+[build]
+command = "npm run build"
+
+[env.production.vars]
+NODE_VERSION = "v22.13.1"
