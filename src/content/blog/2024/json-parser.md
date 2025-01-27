@@ -1,18 +1,16 @@
 ---
-title: jsonパーサ比較
+title: JSON パーサ比較
 pubDate: 2024-02-23
-description: 様々なJSONのパーサの挙動についてのメモ
+description: 様々な JSON のパーサの挙動についてのメモ
 tags: ['tips']
 ---
 
-[Flatt Security Developers' Quiz #6](https://blog.flatt.tech/entry/2312giraffe_x_quiz)
-を先月にやりました．
-
+[Flatt Security Developers' Quiz #6](https://blog.flatt.tech/entry/2312giraffe_x_quiz) を先月にやりました．
 そこで，JSON のパーサの挙動について気になり，調べたのでメモを残しておきます．
 
 ## JSON
 
-まず，[RFC8259](https://datatracker.ietf.org/doc/html/rfc8259) によると，JSON においてキーのユニークは MUST ではなく，SHOULD ですと．
+まず，[RFC8259](https://datatracker.ietf.org/doc/html/rfc8259) によると，JSON においてキーのユニークは MUST ではなく，SHOULD らしいです．
 
 > The names within an object SHOULD be unique.
 
@@ -109,7 +107,6 @@ echo '{"username": "a", "username": "b"}' | jq '.username' # "b"
 ## まとめ
 
 個人的に触れる機会の多いものを見てみましたが，多くは last match のものを返す実装をしているようです．
-
 実装時やテストの際には，この挙動を意識しておくとよいかもしれません．
 
 ---

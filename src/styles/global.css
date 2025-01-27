@@ -130,12 +130,12 @@ pre {
     margin-top: 0;
   }
 
-  >code {
+  > code {
     all: unset;
     white-space: pre;
     overflow-x: scroll;
 
-    >span {
+    > span {
       counter-increment: line-number;
       display: list-item;
       padding-left: 1em;
