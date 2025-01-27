@@ -12,7 +12,7 @@ tags: ['tips']
 
 ## JSON
 
-まず，[RFC8259](https://datatracker.ietf.org/doc/html/rfc8259) によると、JSON においてキーのユニークは MUST ではなく、SHOULD ですと．
+まず，[RFC8259](https://datatracker.ietf.org/doc/html/rfc8259) によると，JSON においてキーのユニークは MUST ではなく，SHOULD ですと．
 
 > The names within an object SHOULD be unique.
 
