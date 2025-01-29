@@ -1,6 +1,6 @@
 ---
 title: 2024 年の振り返り
-pubDate: 2025-01-24
+pubDate: 2025-01-29
 description: 2024 年 1 年間の振り返り．
 tags: ['life']
 ---
