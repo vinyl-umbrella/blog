@@ -1,7 +1,7 @@
 ---
 title: GitHubのSecret Scanを試してみた
 pubDate: 2024-03-10
-description: GitHubのSecret Scanがデフォルトで有効化されるとのことなので検証してみた．
+description: GitHub の Secret Scan がデフォルトで有効化されるとのことなので検証してみた．
 tags: ['poc', 'tips', 'security']
 ---
 
@@ -19,7 +19,6 @@ Organization が GitHub Enterprise を利用している場合にのみ，GitHub
 ## 設定方法
 
 手動で設定する場合は，リポジトリの Settings > Code security and analysis > Secret scanning で有効にできます．
-
 私の検証用のリポジトリでは，デフォルトで有効になっていなかったため，手動で有効にしました．
 ![github secret scanning](./assets/github-secret-scan.png)
 

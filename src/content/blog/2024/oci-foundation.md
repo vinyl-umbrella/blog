@@ -29,11 +29,8 @@ Oracle は，DB が強いのはもちろん知っていますが，クラウド�
 ## 学習方法
 
 Oracle University で Oracle が公式に提供している [学習コンテンツ](https://mylearn.oracle.com/ou/learning-path/become-a-cloud-security-professional-2023/121923) のみです．これ**無料**です！
-
 英語音声のみでしたが，内容が高度でないことと日本語字幕をサポートしているおかげで，容易に学習を進めることができました．
-
 合計学習時間は，座学が 5 時間程度，ハンズオンが 3 時間程度でした．
-
 本番の形式と同じ，模擬テストも提供されているため，しっかり準備できました．
 
 ## 学習時のメモ
@@ -60,18 +57,18 @@ Oracle University で Oracle が公式に提供している [学習コンテン�
 
 ### IAM
 
+<!-- textlint-disable -->
+
 リソースは，OCID で一意に識別される．(AWS での ARN)
-
 フォーマット: `ocid.<RESOURCE TYPE>.<REALM>.[REGION.][FUTURE USE].<UNIQUE ID>`
-
 e.g. `ocid1.instance.oc1.ap-tokyo-1.anxhiljrey55mcqcj7tgzr56eb5mm2uqqhzb6sdnnlfndw5yx365b5fgp3ha`
+
+<!-- textlint-enable -->
 
 #### AuthZ (認可)
 
 ポリシーベースの許可．
-
 ユーザだけでなく，コンパートメントやテナンシにアタッチできる(SCP みたいなの？)
-
 フォーマット: `Allow <group_name> to <verb> <resource_type> in <location> where <condtions>`
 
 - verb
@@ -100,11 +97,8 @@ Allow group OCI-Admin to manage compartments in tenancy
 #### IAM 設計のベストプラクティス
 
 - テナンシ管理者アカウントを日常使いするのはやめよう
-
 - リソースをコンパートメントでわけよう
-
 - root コンパートメントにはリソースを作らないように
-
 - MFA を使おう
 
 ### Network
@@ -150,20 +144,14 @@ Allow group OCI-Admin to manage compartments in tenancy
   - 複数の顧客がその物理マシンを使用
   - Ampare (arm) とても安い
 - Bare Metal インスタンス
-
   - 専用の物理マシン
   - 高い性能やセキュリティ要件が必要な場合に使う
-
 - インスタンスとネットワークの仕組み
-
   - Instance は物理的に存在．一方，NW は仮想的．VNIC と Instance の NIC をつなげることでインスタンスが VNC に所属していることになる
   - ![インスタンスが NIC を得る仕組み](./assets/oci-vnic.png)
-
 - Live Migrate
-
   - 再起動せずにホスト間でライブ移行可能
   - 物理メンテを気にしなくてよい
-
 - AutoScaling
   - 無料
   - Config(image, metadata, shapes, vnic, storage, subnet) を使ってオートスケーリングを実現
@@ -172,10 +160,8 @@ Allow group OCI-Admin to manage compartments in tenancy
 #### コンテナ
 
 - OKE
-
   - k8s
   - portability, lightweight, faster boot が利点
-
 - Container Instance
   - Container Registry や Docker Hub からイメージを取得してコンテナを作れる
   - Fargate のようなコンテナオーケストレーションツールはなく，ただコンテナイメージからインスタンスを作るだけ．
@@ -218,10 +204,8 @@ Allow group OCI-Admin to manage compartments in tenancy
   - `o/log.zip` が object
 
 - Infrequent Access Storage (IA)
-
   - 低頻度アクセス．コストが安い．最小保持期間が 31 日．アーカイブはもっと安い
   - Auto Tiering 可能
-
 - Visibility でパブリックか否か制御できる
   - パブリックは誰でも見られるので好ましくない
   - Pre-Authenticated Request を使用するとよい．署名付きオブジェクトみたいなの？
@@ -254,7 +238,6 @@ Allow group OCI-Admin to manage compartments in tenancy
   - 顧客がデータベースを管理，Oracle がインフラを管理
 
 - Autonomous DB
-
   - 自己管理, 自己保護, プロビジョニング, Scale-Up, Scale-Out, チューニング, 自動セキュリティパッチ, Fault Tolerance
   - Autonomous Data Warehouse (ADW)
     - 大量データの分析に適したデータウェアハウス
@@ -296,15 +279,11 @@ Security Zone を使うには，CloudGuard の有効化が必要．
 #### Vault
 
 階層型の鍵管理サービス．
-
 最初に大きな箱 (Vault) を作り，その中に小さな箱を作り，鍵を入れる．
-
 鍵は，共通鍵(AES), 公開鍵暗号(RSA), 署名(ECDSA) を利用可能．
-
 ![Valut 概略図](./assets/oci-vault.png)
 
 オブジェクトストレージの暗号化鍵に Vault の鍵を使うならポリシーで許可を与える必要がある．
-
 e.g. `allow service objectstorage-us-ashbum-1 to use keys in compatment sandbox`
 
 ### Cost
@@ -314,5 +293,4 @@ e.g. `allow service objectstorage-us-ashbum-1 to use keys in compatment sandbox`
 ### Quota
 
 コンパートメントクォータ(Compartment quotas)で特定コンパートメントのリソース使用料をユーザが定義できる．
-
 サービス制限(Service Limits)は Oracle によって設定されるもので，リージョンやテナンシに適応される．
