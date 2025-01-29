@@ -2,7 +2,7 @@
 title: AWS SAA 合格体験記
 pubDate: 2023-11-30
 description: 新卒SRE が AWS SAA 合格にしました
-tags: ['aws', 'infra']
+tags: ['aws']
 ---
 
 ## 筆者のプロフィール

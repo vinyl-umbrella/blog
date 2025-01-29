@@ -2,7 +2,7 @@
 title: GitHubのSecret Scanを試してみた
 pubDate: 2024-03-10
 description: GitHub の Secret Scan がデフォルトで有効化されるとのことなので検証してみた．
-tags: ['poc', 'tips', 'security']
+tags: ['tips', 'security']
 ---
 
 2024 年 2 月 29 日に GitHub は，ソースコード内に埋め込まれたシークレット情報を検出するための機能である Secret Scan をデフォルトで有効にすると発表しました[^1]．
