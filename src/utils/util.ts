@@ -19,14 +19,10 @@ async function getContents(): Promise<Collections> {
   return posts;
 }
 
-// returns tag name and its count as map<tagname, count>
-function getTags(collections: Collections): Map<string, number> {
-  const tags = new Map<string, number>();
-  for (const tag of collections.map((post) => post.data.tags).flat()) {
-    tags.set(tag, (tags.get(tag) || 0) + 1);
-  }
-
-  return tags;
+// returns tag names list ordered by recent article desc
+function getTags(collections: Collections): string[] {
+  const tags = collections.flatMap((post) => post.data.tags);
+  return Array.from(new Set(tags));
 }
 
 function convert2OgImagePath(url: URL): string {
