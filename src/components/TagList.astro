@@ -11,31 +11,36 @@ interface Props {
 const { classname } = Astro.props;
 ---
 
-<div class:list={['tags', classname]}>
+<div class:list={['sidebar-tags', classname]}>
   <h3>Tags</h3>
-  {
-    [...tags.keys()].map((tag) => (
-      <a href={`/tags/${tag}/`} class='tag'>
-        <span>
-          #&nbsp;{tag} <span class='tagcount'>({tags.get(tag)})</span>
-        </span>
-      </a>
-    ))
-  }
+  <div class='tags'>
+    {
+      tags.map((tag) => (
+        <a href={`/tags/${tag}/`} class='tag'>
+          <span>#&nbsp;{tag}</span>
+        </a>
+      ))
+    }
+  </div>
 </div>
 
 <style>
-  .tags {
+  .sidebar-tags {
     top: 100px;
     display: block;
     padding: 0.5em;
     overflow-y: scroll;
-    background-color: rgb(var(--gray-1));
-    border: rgb(var(--white-3)) 1px solid;
+    background-color: rgb(var(--gray-2));
+    border: rgb(var(--white-2)) 1px solid;
     border-radius: 0.5em;
 
     h3 {
       margin-top: 0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
     }
 
     .tag {
@@ -43,17 +48,13 @@ const { classname } = Astro.props;
       font-size: smaller;
       padding: 0.25em 0.5em;
       margin: 0.25em;
-      color: rgb(var(--white-3));
+      color: rgb(var(--white-2));
       background-color: rgb(var(--gray-3));
       border-radius: 0.25em;
 
       &:hover {
         color: var(--accent);
         text-decoration: underline;
-      }
-
-      .tagcount {
-        font-size: smaller;
       }
     }
   }
