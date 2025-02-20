@@ -48,7 +48,7 @@ const { page, tag } = Astro.props;
         }
       </div>
 
-      {page.data.map((post) => <BlogCard slug={post.slug} z={post.data} />)}
+      {page.data.map((post) => <BlogCard slug={post.id} z={post.data} />)}
       <Pages prev={page.url.prev} next={page.url.next} />
     </div>
   </div>

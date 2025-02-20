@@ -4,5 +4,12 @@
     "target": "ESNext",
     "strict": true,
     "strictNullChecks": true
-  }
+  },
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ]
 }
