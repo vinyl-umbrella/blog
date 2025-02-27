@@ -35,8 +35,8 @@ const { headings } = Astro.props;
     max-height: 50%;
     padding: 0.5em;
     overflow-y: scroll;
-    background-color: rgb(var(--gray-2));
-    border: rgb(var(--white-2)) 1px solid;
+    background-color: var(--bg-color);
+    border: 1px solid var(--text-color);
     border-radius: 0.5em;
 
     @media (max-width: 768px) {
@@ -58,7 +58,7 @@ const { headings } = Astro.props;
 
     .heading-2 {
       text-decoration: none;
-      color: rgba(var(--white-2), 0.8);
+      color: rgba(200, 206, 217, 0.8);
       &:hover {
         color: var(--accent);
       }
@@ -67,7 +67,7 @@ const { headings } = Astro.props;
     .heading-3 {
       font-size: smaller;
       text-decoration: none;
-      color: rgba(var(--white-2), 0.7);
+      color: rgba(200, 206, 217, 0.7);
       &:hover {
         color: var(--accent);
       }
@@ -81,7 +81,7 @@ const { headings } = Astro.props;
     .heading-4 {
       font-size: smaller;
       text-decoration: none;
-      color: rgba(var(--white-2), 0.6);
+      color: rgba(200, 206, 217, 0.6);
       &:hover {
         color: var(--accent);
       }

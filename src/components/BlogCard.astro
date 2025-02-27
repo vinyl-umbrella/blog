@@ -44,7 +44,7 @@ const { slug, z } = Astro.props;
   .content {
     display: flex;
     margin: 1em 0;
-    background-color: rgb(var(--gray-3));
+    background-color: var(--color-gray-700);
     border-radius: 0.5em;
     padding: 0.75em;
 
@@ -65,10 +65,10 @@ const { slug, z } = Astro.props;
       .sub {
         margin-top: 0.5em;
         line-height: 1.2em;
-        color: rgb(var(--white-2), 0.8);
+        color: rgba(200, 206, 217, 0.8);
 
         a {
-          color: rgba(var(--white-2), 0.9);
+          color: rgba(200, 206, 217, 0.9);
           &:hover {
             color: var(--accent);
           }
