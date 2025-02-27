@@ -25,7 +25,6 @@ import json
 import os
 from datetime import datetime
 
-
 time_out_of_handler = datetime.now()
 env_user = os.environ.get("USER")
 
