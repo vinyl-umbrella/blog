@@ -4,9 +4,4 @@ updates:
     directory: /
     schedule:
       interval: weekly
-    groups:
-      prod:
-        dependency-type: "production"
-        patterns:
-          - "*"
     open-pull-requests-limit: 0
