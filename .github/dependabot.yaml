@@ -7,4 +7,6 @@ updates:
     groups:
       prod:
         dependency-type: "production"
+        patterns:
+          - "*"
     open-pull-requests-limit: 0
