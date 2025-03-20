@@ -99,6 +99,12 @@ AWS SAM でデプロイします．
 「GitHub CI/CD 実践ガイド」の著者が書いた[記事](https://zenn.dev/tmknom/articles/traceable-github-actions-with-aws)を参考に，トレーサビリティを考慮した GitHub Actions の設定にしています．
 
 ```yaml deploy.yml
+jobs:
+  deploy:
+    # ...省略...
+    steps:
+      # ...省略...
+
       # セッション名は `{リポジトリ名}-{GitHub Actions の実行 ID}-{GitHub Actions の実行試行回数}` としている
       - name: Generate session name
         id: session
@@ -122,6 +128,7 @@ AWS SAM でデプロイします．
         run: |
           echo "## Authorized on AWS" >> "${GITHUB_STEP_SUMMARY}"
           echo "- ${CLOUDTRAIL_URL}?Username=${SESSION_NAME}" >> "${GITHUB_STEP_SUMMARY}"
+      # ...省略...
 ```
 
 ![deploy summary](./assets/deploy_summary.png)
