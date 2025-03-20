@@ -9,24 +9,27 @@ import remarkBreaks from 'remark-breaks';
 export default defineConfig({
   site: 'https://blog.jsmz.dev',
   redirects: {
-    '/blog': '/'
+    '/blog': '/',
   },
   trailingSlash: 'ignore',
-  integrations: [mdx(), sitemap({
-    filter: page => !page.match(/\/blog\/draft\//g),
-    changefreq: 'weekly',
-    priority: 0.7
-  })],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => !page.match(/\/blog\/draft\//g),
+      changefreq: 'weekly',
+      priority: 0.7,
+    }),
+  ],
   markdown: {
     shikiConfig: {
       theme: 'github-dark-dimmed',
-      wrap: true
+      wrap: true,
     },
     remarkPlugins: [addCodeUtil, linkNewTab, remarkBreaks],
   },
   vite: {
     optimizeDeps: {
-      exclude: ['sharp']
-    }
-  }
+      exclude: ['sharp'],
+    },
+  },
 });
