@@ -1,0 +1,74 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!-- Import Pagefind UI styles -->
+<link href="/_pagefind/pagefind-ui.css" rel="stylesheet"></link>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Search | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    <style>
+      main {
+        width: calc(100% - 2em);
+        max-width: 100%;
+        margin: 0;
+      }
+      .search-container {
+        padding-top: 50px;
+        margin: 0 auto;
+        max-width: 720px;
+      }
+      h1 {
+        margin-bottom: 1em;
+      }
+      #search-results {
+        margin-top: 2rem;
+      }
+      .search-result {
+        margin-bottom: 2rem;
+      }
+      .search-result-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+      }
+      .search-result-excerpt {
+        font-size: 1rem;
+        color: var(--text-color-secondary);
+      }
+      .pagefind-ui__drawer {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="search-container">
+        <h1>Search</h1>
+        <div id="search"></div>
+        <div id="results"></div>
+      </div>
+    </main>
+    <Footer />
+
+    <script>
+      // Initialize Pagefind search when the page loads
+      document.addEventListener('DOMContentLoaded', async () => {
+        // Dynamically import Pagefind UI when the page loads
+        const { PagefindUI } = await import('@pagefind/default-ui');
+        
+        new PagefindUI({
+          element: "#search",
+          showImages: false,
+          showEmptyFilters: false,
+          resetStyles: false,
+        });
+      });
+    </script>
+  </body>
+</html>

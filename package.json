@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && npx pagefind --site dist",
     "preview": "npm run build && wrangler pages dev ./dist",
     "astro": "astro",
     "fmt": "prettier --write src/",
@@ -17,7 +17,9 @@
     "@astrojs/mdx": "^4.0.8",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
+    "@pagefind/default-ui": "^1.0.4",
     "astro": "^5.4.2",
+    "pagefind": "^1.0.4",
     "remark-breaks": "^4.0.0",
     "satori": "^0.12.1",
     "satori-html": "^0.3.2",
