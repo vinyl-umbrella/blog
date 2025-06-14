@@ -8,7 +8,7 @@ tags: ['aws']
 AWS を使う上で，認証がどうなっているのか，アクセスキーとは何なのかが気になったので，その仕様を調査し実際に実装してみました．
 [私のサンプル実装](https://github.com/vinyl-umbrella/sigv4)
 
-詳細な仕様は [AWS のドキュメント](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html)をご参考ください．
+詳細な仕様は [AWS のドキュメント](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html)をご参照ください．
 
 ## AWS Signature Version 4 (SigV4) とは
 
@@ -26,7 +26,7 @@ SigV4 では，リクエストの中にシークレットアクセスキーを�
 
 送信先の AWS サービスのエンドポイントの DNS 名です．
 たとえば，東京リージョンの AWS Lambda のエンドポイントは `lambda.ap-northeast-1.amazonaws.com` です．
-IAM はグローバルサービスなので，エンドポイントにリージョンが含まれず，GovCloud などの特殊なリージョンを除いて，` iam.amazonaws.com` となります．
+IAM はグローバルサービスなので，エンドポイントにリージョンが含まれず，GovCloud などの特殊なリージョンを除いて，`iam.amazonaws.com` となります．
 
 [各サービスのエンドポイントの一覧](https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
 
@@ -68,9 +68,9 @@ AWS CLI を触ったことがある方は，`aws lambda list-functions` や `aws
 `CanonicalHeaders` に含まれるヘッダ名は小文字であり，アルファベット順に指定している必要があります．
 STS を使用して short-term credentials を用いる場合は，`x-amz-security-token` ヘッダも含める必要があります．
 `SignedHeaders` は，`CanonicalHeaders` に含まれるヘッダ名をセミコロンで連結した文字列です．
-最後に，`HashedPayload` はリクエストボディの SHA-256 ハッシュ値を16進数で表現したものです．リクエストボディがないときはから文字列の SHA-256 ハッシュ値を使用します．
+最後に，`HashedPayload` はリクエストボディの SHA-256 ハッシュ値を 16 進数で表現したものです．リクエストボディがないときはから文字列の SHA-256 ハッシュ値を使用します．
 
-ListFunctions の例
+ListFunctions の例．
 
 ```
 GET
@@ -103,10 +103,9 @@ SigV4 ではアルゴリズムに `AWS4-HMAC-SHA256` を使用します．
 <YYYYMMDD>/<AWSRegion>/<AWSService>/aws4_request
 ```
 
-`HashedCanonicalRequest` は前ステップで生成した正規化リクエストの SHA-256 ハッシュ値を16進数で表現したものです．
+`HashedCanonicalRequest` は前ステップで生成した正規化リクエストの SHA-256 ハッシュ値を 16 進数で表現したものです．
 
-例
-
+例．
 ```
 AWS4-HMAC-SHA256
 20250614T081521Z
