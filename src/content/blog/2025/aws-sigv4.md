@@ -106,6 +106,7 @@ SigV4 ではアルゴリズムに `AWS4-HMAC-SHA256` を使用します．
 `HashedCanonicalRequest` は前ステップで生成した正規化リクエストの SHA-256 ハッシュ値を 16 進数で表現したものです．
 
 例．
+
 ```
 AWS4-HMAC-SHA256
 20250614T081521Z
