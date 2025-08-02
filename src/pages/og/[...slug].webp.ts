@@ -14,7 +14,7 @@ export async function GET({ params }: APIContext) {
   if (!posts) return { status: 404 };
 
   const body = await createOgImage(posts.data.title);
-  return new Response(body, {
+  return new Response(new Uint8Array(body), {
     status: 200,
     headers: {
       'Content-Type': 'image/webp',

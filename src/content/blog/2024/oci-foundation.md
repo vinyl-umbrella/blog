@@ -40,7 +40,6 @@ Oracle University で Oracle が公式に提供している [学習コンテン�
 ### OCI Architecture
 
 - Region
-
   - Availability Domains (AZ)
     - Fault Domains (Logical Data Center within AD). 3 Fault Doamins Per Availability Domains
 
@@ -72,11 +71,9 @@ e.g. `ocid1.instance.oc1.ap-tokyo-1.anxhiljrey55mcqcj7tgzr56eb5mm2uqqhzb6sdnnlfn
 フォーマット: `Allow <group_name> to <verb> <resource_type> in <location> where <condtions>`
 
 - verb
-
   - `manage`, `use`, `read`, `inspect`
 
 - resource_type
-
   - object-family とか
 
 - location
@@ -104,12 +101,10 @@ Allow group OCI-Admin to manage compartments in tenancy
 ### Network
 
 - service gateway
-
   - VCN からインターネットへ出ずに OCI のサービスにアクセスできる
   - AWS でいう VPC Endpoint のようなもの
 
 - Local Peering Gateway (LPG), Dynamic Routing Gateway(DRG)
-
   - 2 つの VCN が同じデータセンタにあるなら LPG をせっちすれば，相互に通信が可能になる
   - AWS でいう VPC Peering みたいなもの
   - 異なるデータセンタにある場合は，DRG で Oracle backbone を通って通信が可能になる
@@ -117,18 +112,14 @@ Allow group OCI-Admin to manage compartments in tenancy
     - それぞれに LPG を置く必要はない
 
 - security list
-
   - CIDR/ポートでソースと宛先を制限
   - AWS でいう Network ACL みたいなもの
 
 - Network Security Group (NSG)
-
   - AWS でソースに sg を指定していたような感じの仕組み
 
 - Load Balancer
-
   - Network Load Balancer
-
     - L4 TCP & UDP Load Balancer
     - low lantecy
 
@@ -198,7 +189,6 @@ Allow group OCI-Admin to manage compartments in tenancy
 - バケット名はテナンシでユニーク
 - namespace はバケットの top level で global unique である必要がある
 - e.g. `https://objectstorage.us-sanjose-1.oraclecloud.com/n/aaaaaaa/b/ccccccccccccc/o/log.zip`
-
   - このとき `n/aaaaaa` が namespace
   - `b/cccccccccccc` が bucket
   - `o/log.zip` が object
@@ -219,7 +209,6 @@ Allow group OCI-Admin to manage compartments in tenancy
 - 持続的で耐久性あり．複製可能．
 
 - Tier
-
   - Lower Cost (2 IOPS/GB)
   - Balanceed (60)
   - Higher Performance (75)
@@ -233,7 +222,6 @@ Allow group OCI-Admin to manage compartments in tenancy
 ### DB
 
 - Co-mangaed
-
   - 責任共有モデルみたい
   - 顧客がデータベースを管理，Oracle がインフラを管理
 

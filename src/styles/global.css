@@ -120,7 +120,8 @@ input {
 }
 
 table {
-  width: 100%;
+  width: 85%;
+  margin: 0 auto;
   border: 4px solid var(--color-gray-700);
   border-collapse: collapse;
 
