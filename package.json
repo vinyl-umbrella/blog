@@ -19,7 +19,7 @@
     "@astrojs/sitemap": "^3.4.2",
     "astro": "^5.12.8",
     "remark-breaks": "^4.0.0",
-    "satori": "^0.12.1",
+    "satori": "^0.16.2",
     "satori-html": "^0.3.2",
     "typescript": "^5.7.3"
   },
