@@ -118,7 +118,7 @@ import "github.com/aws/aws-sdk-go-v2/feature/s3/manager"
 - 自動的な並列処理，リトライ，分割アップロード/ダウンロード
 - e.g. `manager.Downloader`, `manager.Uploader` など
 
-大容量ファイルの場合，Manager Packageの使用を推奨します．
+大容量ファイルの場合，Manager Package の使用を推奨します．
 Download Manager は以下の最適化を自動的に行います．
 
 - Range Request によるファイル分割
