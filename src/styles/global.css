@@ -183,13 +183,14 @@ pre {
     all: unset;
     white-space: pre;
     overflow-x: scroll;
+    font-size: var(--font-size-sm);
 
     > span {
       counter-increment: line-number;
       display: list-item;
       padding-left: 1em;
       margin-left: 1em;
-      line-height: 1px;
+      line-height: 0px;
 
       &::marker {
         content: counter(line-number);
