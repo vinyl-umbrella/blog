@@ -30,6 +30,6 @@
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-preset-ja-spacing": "^2.4.3",
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",
-    "wrangler": "^3.105.0"
+    "wrangler": "^4.32.0"
   }
 }
