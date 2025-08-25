@@ -3,6 +3,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import addCodeUtil from './src/plugins/remarkAddCodeUtil';
 import linkNewTab from './src/plugins/remarkLinkNewTab';
+import remarkMermaidDetector from './src/plugins/remarkMermaidDetector';
 import remarkBreaks from 'remark-breaks';
 
 // https://astro.build/config
@@ -28,7 +29,11 @@ export default defineConfig({
       theme: 'github-dark-dimmed',
       wrap: true,
     },
-    remarkPlugins: [addCodeUtil, linkNewTab, remarkBreaks],
+    syntaxHighlight: {
+      type: 'shiki',
+      excludeLangs: ['mermaid'],
+    },
+    remarkPlugins: [addCodeUtil, linkNewTab, remarkMermaidDetector, remarkBreaks],
   },
   vite: {
     optimizeDeps: {

@@ -14,9 +14,15 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
-const { Content, headings } = await render(post);
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+
+const needsMermaid = remarkPluginFrontmatter?.hasMermaid || false;
 ---
 
-<BlogPost props={{ ...post.data }} headings={headings}>
+<BlogPost
+  props={{ ...post.data }}
+  headings={headings}
+  needsMermaid={needsMermaid}
+>
   <Content />
 </BlogPost>

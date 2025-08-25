@@ -9,10 +9,12 @@ import type { MarkdownHeading } from 'astro';
 interface Props {
   props: CollectionEntry<'blog'>['data'];
   headings: MarkdownHeading[];
+  needsMermaid: boolean;
 }
 
 const { title, description, pubDate, updatedDate, tags } = Astro.props.props;
 let { headings } = Astro.props;
+const { needsMermaid } = Astro.props;
 // add page title to headings
 headings.unshift({ depth: 1, text: title, slug: title });
 ---
@@ -128,6 +130,18 @@ headings.unshift({ depth: 1, text: title, slug: title });
       min-width: 80%;
       margin: 2em auto;
     }
+
+    .mermaid-container {
+      display: flex;
+      justify-content: center;
+      margin: 1em auto;
+
+      svg {
+        p {
+          all: unset;
+        }
+      }
+    }
   }
 </style>
 
@@ -158,3 +172,5 @@ headings.unshift({ depth: 1, text: title, slug: title });
   }
   attachListenerToCopyButton();
 </script>
+
+{needsMermaid && <script type='module' src='/js/mermaid.js' />}
