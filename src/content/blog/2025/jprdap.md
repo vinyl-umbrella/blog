@@ -105,7 +105,7 @@ rdap --bs-url="https://jprdap.jsmz.dev/bootstrap" --json google.jp
 curl -s "https://jprdap.jsmz.dev/rdap/domain/google.jp" | jq .
 ```
 
-実際のされる応答の例を以下に示します．
+実際に返される応答の例を以下に示します．
 
 ```jsonc
 {
