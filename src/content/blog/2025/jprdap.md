@@ -32,14 +32,9 @@ RDAP は WHOIS を置き換えるために策定された「HTTPS + JSON」ベ�
 
 ```json
 {
-    "version": "1",
-    "publication": "2024-09-01T00:00:00Z",
-    "services": [
-        [
-            ["com"],
-            ["https://rdap.verisign.com/com/v1/"]
-        ]
-    ]
+  "version": "1",
+  "publication": "2024-09-01T00:00:00Z",
+  "services": [[["com"], ["https://rdap.verisign.com/com/v1/"]]]
 }
 ```
 
@@ -47,18 +42,24 @@ RDAP は WHOIS を置き換えるために策定された「HTTPS + JSON」ベ�
 
 ```json
 {
-    "objectClassName": "domain",
-    "ldhName": "example.com",
-    "status": ["active"],
-    "events": [
-        { "eventAction": "registration",                     "eventDate": "1995-08-14T04:00:00Z" },
-        { "eventAction": "expiration",                       "eventDate": "2026-08-13T04:00:00Z" },
-        { "eventAction": "last changed",                     "eventDate": "2025-08-14T07:01:39Z" },
-        { "eventAction": "last update of RDAP database",     "eventDate": "2025-10-02T12:41:56Z" }
-    ],
-    "links": [
-        { "rel": "self", "href": "https://rdap.verisign.com/com/v1/domain/EXAMPLE.COM" }
-    ]
+  "objectClassName": "domain",
+  "ldhName": "example.com",
+  "status": ["active"],
+  "events": [
+    { "eventAction": "registration", "eventDate": "1995-08-14T04:00:00Z" },
+    { "eventAction": "expiration", "eventDate": "2026-08-13T04:00:00Z" },
+    { "eventAction": "last changed", "eventDate": "2025-08-14T07:01:39Z" },
+    {
+      "eventAction": "last update of RDAP database",
+      "eventDate": "2025-10-02T12:41:56Z"
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://rdap.verisign.com/com/v1/domain/EXAMPLE.COM"
+    }
+  ]
 }
 ```
 
@@ -80,14 +81,9 @@ Bootstrap のレスポンス例を以下に示します．
 
 ```json
 {
-    "version": "1",
-    "publication": "2025-09-01T00:00:00Z",
-    "services": [
-        [
-            ["jp"],
-            ["https://jprdap.jsmz.dev/rdap/"]
-        ]
-    ]
+  "version": "1",
+  "publication": "2025-09-01T00:00:00Z",
+  "services": [[["jp"], ["https://jprdap.jsmz.dev/rdap/"]]]
 }
 ```
 
@@ -113,56 +109,49 @@ curl -s "https://jprdap.jsmz.dev/rdap/domain/google.jp" | jq .
 
 ```jsonc
 {
-  "rdapConformance": [
-    "rdap_level_0"
-  ],
+  "rdapConformance": ["rdap_level_0"],
   "objectClassName": "domain",
   "ldhName": "google.jp",
   "unicodeName": {
     "domain": "google.jp",
-    "error": false
+    "error": false,
   },
   "links": [
     {
       "rel": "self",
       "href": "https://jprdap.jsmz.dev/rdap/domain/google.jp",
-      "type": "application/rdap+json"
+      "type": "application/rdap+json",
     },
-	// ...
+    // ...
   ],
   "events": [
     {
       "eventAction": "expiration",
-      "eventDate": "2026-05-30T15:00:00.000Z"
+      "eventDate": "2026-05-30T15:00:00.000Z",
     },
     {
       "eventAction": "last changed",
-      "eventDate": "2025-05-31T16:05:04.000Z"
-    }
+      "eventDate": "2025-05-31T16:05:04.000Z",
+    },
   ],
-  "status": [
-    "active"
-  ],
+  "status": ["active"],
   "nameservers": [
     {
-      "ldhName": "ns1.google.com"
+      "ldhName": "ns1.google.com",
     },
-	// ...
+    // ...
   ],
   "entities": [
     {
       "objectClassName": "entity",
-      "roles": [
-        "registrant"
-      ],
+      "roles": ["registrant"],
       // ...
-    }
+    },
   ],
   "notices": [
-	// ...
-  ]
+    // ...
+  ],
 }
-
 ```
 
 注意事項は以下のとおりです．
