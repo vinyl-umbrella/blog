@@ -51,7 +51,7 @@ ARM64 の場合は，`/proc/cpuinfo` から CPU モデル名を取得できま�
 ## 実験方法
 
 実験に使用したコードは[こちら](https://github.com/vinyl-umbrella/playground/tree/main/aws/lambda-cpu)に置いています．
-このコードには，3 つ異なる目的のプログラムで構成されています．
+このコードには，3 つの異なる目的のプログラムで構成されています．
 
 - [`lambdasrc/main.go`](https://github.com/vinyl-umbrella/playground/blob/044a4667fdcb414a1b6e4b7e30889e3ed5008c22/aws/lambda-cpu/lambdasrc/main.go): `/proc/cpuinfo` から CPU 情報を取得し，DynamoDB に保存する Lambda 関数．x86_64 と ARM64 の両方の Lambda 関数がデプロイ．
 - [`invoke.py`](https://github.com/vinyl-umbrella/playground/blob/044a4667fdcb414a1b6e4b7e30889e3ed5008c22/aws/lambda-cpu/invoke.py): 先述の Lambda 関数を様々なメモリ設定で呼び出すスクリプト．<br>※ Lambda は設定を変更すると次の実行はコールドスタートになるので，実行基盤の変更を強制しています．
