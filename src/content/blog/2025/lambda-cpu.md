@@ -1,7 +1,6 @@
 ---
 title: AWS Lambda のメモリ設定による CPU の変化
 pubDate: 2025-10-18
-updatedDate: 2025-10-18
 description: AWS Lambda では，CPU の選択ができず，メモリ設定によって自動で CPU 性能が変化します．コア数などがどう変わるのか調査した際のメモです．
 tags: ['aws']
 ---

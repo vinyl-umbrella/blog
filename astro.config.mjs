@@ -20,7 +20,6 @@ export default defineConfig({
         !page.match(/\/blog\/draft\//g) &&
         !page.match(/\/tags\//g) &&
         !page.match(/\/\d+\/$/g),
-      changefreq: 'weekly',
       priority: 0.7,
     }),
   ],
