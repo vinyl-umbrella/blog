@@ -8,8 +8,8 @@
     "build": "astro check && astro build",
     "preview": "npm run build && wrangler pages dev ./dist",
     "astro": "astro",
-    "fmt": "prettier --write src/",
-    "fmt:check": "prettier --check src/",
+    "fmt": "biome format --write",
+    "fmt:check": "biome format",
     "textlint": "textlint src/content/blog/20*/*.md"
   },
   "dependencies": {

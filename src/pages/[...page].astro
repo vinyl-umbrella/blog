@@ -1,12 +1,12 @@
 ---
-import Layout from '../layouts/BlogList.astro';
+import Layout from "../layouts/BlogList.astro";
 
-import { getContents } from '../utils/util';
-import type { GetStaticPathsOptions, Page } from 'astro';
-import type { CollectionEntry } from 'astro:content';
+import { getContents } from "../utils/util";
+import type { GetStaticPathsOptions, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  let collection = await getContents();
+  const collection = await getContents();
 
   return paginate(collection, { pageSize: 10 });
 }
