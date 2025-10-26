@@ -11,7 +11,7 @@ const linkNewTab = () => {
         // set
         ele.data.hProperties.target = '_blank';
         ele.data.hProperties.rel = 'noopener noreferrer';
-      } catch (e) {
+      } catch (_e) {
         return;
       }
     });

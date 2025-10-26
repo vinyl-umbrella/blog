@@ -32,7 +32,12 @@ export default defineConfig({
       type: 'shiki',
       excludeLangs: ['mermaid'],
     },
-    remarkPlugins: [addCodeUtil, linkNewTab, remarkMermaidDetector, remarkBreaks],
+    remarkPlugins: [
+      addCodeUtil,
+      linkNewTab,
+      remarkMermaidDetector,
+      remarkBreaks,
+    ],
   },
   vite: {
     optimizeDeps: {
