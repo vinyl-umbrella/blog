@@ -8,6 +8,7 @@
     "build": "astro check && astro build",
     "preview": "npm run build && wrangler pages dev ./dist",
     "astro": "astro",
+    "lint": "biome lint",
     "fmt": "biome format --write",
     "fmt:check": "biome format",
     "textlint": "textlint src/content/blog/20*/*.md"

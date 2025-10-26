@@ -6,7 +6,13 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!!**/dist", "!!.textlintrc.json"]
+    "includes": [
+      "**",
+      "!!**/dist",
+      "!!**/.astro",
+      "!!**/.wrangler",
+      "!!.textlintrc.json"
+    ]
   },
   "formatter": {
     "enabled": true,
