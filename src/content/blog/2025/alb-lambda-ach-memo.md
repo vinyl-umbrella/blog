@@ -1,6 +1,6 @@
 ---
-title: ALB のターゲットに Lambda にする際のアーキテクチャメモ
-pubDate: 2025-12-14
+title: ALB のターゲットに Lambda を指定する際のアーキテクチャメモ
+pubDate: 2025-12-15
 description: ALB のターゲットに Lambda 関数を指定するアーキテクチャの最小構成と注意点
 tags: ['aws']
 ---
@@ -10,7 +10,7 @@ tags: ['aws']
 ALB (Application Load Balancer) のターゲットは，インスタンス，IP，Lambda が選択できます．
 よく使われるのは，インスタンスか IP であるが，Lambda という選択肢もあり，これを使ったことがなかったため軽く使ってみました．
 
-Lambda をターゲットに選択できるようになったのは，2018 年 11 月かららしい．かなり昔からある機能なんですね．
+Lambda をターゲットに選択できるようになったのは，2018 年 11 月かららしいです．かなり昔からある機能なんですね．
 https://aws.amazon.com/jp/about-aws/whats-new/2018/11/alb-can-now-invoke-lambda-functions-to-serve-https-requests/
 
 本記事では最小構成での設定手順と，ALB のターゲットに Lambda にする際の特有の注意点 (ヘルスチェック, レスポンスフォーマット) をまとめます．
@@ -50,7 +50,7 @@ graph TD;
 
 - セキュリティグループ
   - ALB 用
-    任意のソースから TCP 80 もしくは 443 を許可．これも ALB と同じく Lamdba 特有の設定はなし．
+    任意のソースから TCP 80 もしくは 443 を許可．これも ALB と同じく Lambda 特有の設定はなし．
 
   - Lambda 用
     こちらはインバウンドルールは不要．ALB が Lambda の関数 URL に対して HTTP リクエストを投げるのではなく，ALB が Invoke API を使用して呼び出している．
@@ -86,7 +86,7 @@ graph TD;
 
 - IAM ロール
     VPC に配置する Lambda に使われるマネージドポリシーの `AWSLambdaVPCAccessExecutionRole` で十分です．
-    もし，Resouce が `*` を避けたいのであれば，カスタマーマネージドポリシーを書いてもよいですが，`*` でも影響は少ない．
+    もし，Resource が `*` を避けたいのであれば，カスタマーマネージドポリシーを書いてもよいですが，`*` でも影響は少ない．
 
 ## 実行してみる
 
@@ -103,7 +103,24 @@ def lambda_handler(event, context):
     }
 ```
 
+レスポンスのフォーマットは指定されています．
+`statusCode` もこんな感じで連想配列に入れて返すことで，Lambda のイベントマッピングが ALB 用に変換してくれます．
+また，ここのフォーマットが誤っていると，ALB 側で 502 Bad Gateway が返されます．
+https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/application/lambda-functions.html#respond-to-load-balancer
+```json
+{
+    "isBase64Encoded": false,
+    "statusCode": 200,
+    "statusDescription": "200 OK",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": "Hello from Lambda (optional)"
+}
+```
+
 まずは，GET リクエストを投げてみました．ちゃんと 200 OK が返ってきました．
+`Content-Type` は未指定の場合は，`application/octet-stream` になるようです．JSON を返すことを明示したい場合は，レスポンス時のヘッダに `Content-Type: application/json` が入るよう指定しましょう．
 ```sh
 $ curl "http://public-alb-xxxxxxxxx.ap-northeast-1.elb.amazonaws.com/aaa?a=2" -i
 HTTP/1.1 200 OK
@@ -147,7 +164,7 @@ Context のほうはこんな感じです．SDK ごとにフォーマットは�
 LambdaContext([aws_request_id=db984996-f8e5-4fd8-a4f2-2b7491ccab44,log_group_name=/aws/lambda/sample-alb-function,log_stream_name=2025/12/14/[$LATEST]0bf60e36a23b4416acfa7fe6e82bfdac,function_name=sample-alb-function,memory_limit_in_mb=128,function_version=$LATEST,invoked_function_arn=arn:aws:lambda:ap-northeast-1:xxxxxxxx:function:sample-alb-function,client_context=None,identity=CognitoIdentity([cognito_identity_id=None,cognito_identity_pool_id=None]),tenant_id=None])
 ```
 
-x-forwarded-for は適当に名乗っても，それが ALB に伝わります．ALB を使用する際の一般的な挙動と同じです
+x-forwarded-for は適当に名乗っても，それが ALB に伝わります．ALB を使用する際の一般的な挙動と同じです．
 やっぱり L3 の情報を L7 に持ってこようとするのが誤っていますね．
 [AWS のドキュメント](https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/application/x-forwarded-headers.html)にもセキュリティ上のリスクがあるとしっかり明記されています．
 
@@ -191,24 +208,9 @@ Connection: keep-alive
 }
 ```
 
-レスポンスのフォーマットは指定されています．
-`statusCode` もこんな感じで連想配列に入れて返すことで，Lambda のイベントマッピングが ALB 用に変換してくれます．
-また，ここのフォーマットが誤っていると，ALB 側で 502 Bad Gateway が返されます．
-```json
-{
-    "isBase64Encoded": false,
-    "statusCode": 200,
-    "statusDescription": "200 OK",
-    "headers": {
-        "Content-Type": "application/json"
-    },
-    "body": "Hello from Lambda (optional)"
-}
-```
-
 ## おわりに
 
 今回は，ALB のターゲットに Lambda 関数を指定するアーキテクチャを試してみました．
 Lambda の手前に API Gateway を置くことが多く用いられるアーキテクチャですが，API Gateway はタイムアウトの制限があったり，ログの設定やインターナル API を設定しようとすると少々面倒だったりするため，ALB を使う選択肢もあり得ると思います．
 
-既存の ALB を使いまわす場合やメンテナンス時のみ，優先度を変更して Lambda から返すようにする場合は，Lambda をターゲットにするのも選択肢としてあり得るでしょう．
+既存の ALB を使いまわす場合やメンテナンス時のみ，優先度を変更して Lambda から返すといったケースでは，Lambda をターゲットにするのも選択肢としてあり得るでしょう．
