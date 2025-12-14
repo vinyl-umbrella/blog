@@ -8,7 +8,7 @@ tags: ['aws']
 ## はじめに
 
 ALB (Application Load Balancer) のターゲットは，インスタンス，IP，Lambda が選択できます．
-よく使われるのは，インスタンスか IP であるが，Lambda という選択肢もあり，これを使ったことがなかったため軽く使ってみました．
+よく使われるのは，インスタンスか IP ですが，Lambda という選択肢もあり，これを使ったことがなかったため軽く使ってみました．
 
 Lambda をターゲットに選択できるようになったのは，2018 年 11 月かららしいです．かなり昔からある機能なんですね．
 https://aws.amazon.com/jp/about-aws/whats-new/2018/11/alb-can-now-invoke-lambda-functions-to-serve-https-requests/
