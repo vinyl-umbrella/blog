@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import { loadDefaultJapaneseParser } from 'budoux';
 import { html } from 'satori-html';
 import satori from 'satori';
 import sharp from 'sharp';
@@ -10,6 +11,11 @@ async function getFont(): Promise<Buffer> {
 }
 
 async function createOgImage(title: string): Promise<Buffer> {
+  // Parse title with BudouX for natural line breaks
+  const parser = loadDefaultJapaneseParser();
+  const chunks = parser.parse(title);
+  const titleWithBreaks = chunks.join('<wbr>');
+
   // create html markup
   const markup = html`
     <div
@@ -59,7 +65,7 @@ async function createOgImage(title: string): Promise<Buffer> {
       border-bottom: 4px solid rgba(147, 197, 253, 0.6);
     "
       >
-        ${title}
+        ${titleWithBreaks}
       </div>
     </div>
   `;
