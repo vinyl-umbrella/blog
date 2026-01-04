@@ -4,6 +4,9 @@ import { html } from 'satori-html';
 import satori from 'satori';
 import sharp from 'sharp';
 
+// Load BudouX parser once to avoid repeated initialization
+const budouxParser = loadDefaultJapaneseParser();
+
 async function getFont(): Promise<Buffer> {
   return await fs.readFile(
     'src/fonts/noto-sans-jp-v52-japanese_latin-regular.woff',
@@ -12,8 +15,7 @@ async function getFont(): Promise<Buffer> {
 
 async function createOgImage(title: string): Promise<Buffer> {
   // Parse title with BudouX for natural line breaks
-  const parser = loadDefaultJapaneseParser();
-  const chunks = parser.parse(title);
+  const chunks = budouxParser.parse(title);
   const titleWithBreaks = chunks.join('<wbr>');
 
   // create html markup
