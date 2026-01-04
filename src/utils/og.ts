@@ -1,7 +1,11 @@
 import fs from 'node:fs/promises';
+import { loadDefaultJapaneseParser } from 'budoux';
 import { html } from 'satori-html';
 import satori from 'satori';
 import sharp from 'sharp';
+
+// Load BudouX parser once to avoid repeated initialization
+const budouxParser = loadDefaultJapaneseParser();
 
 async function getFont(): Promise<Buffer> {
   return await fs.readFile(
@@ -10,8 +14,14 @@ async function getFont(): Promise<Buffer> {
 }
 
 async function createOgImage(title: string): Promise<Buffer> {
+  // Parse title with BudouX for natural line breaks
+  const chunks = budouxParser.parse(title);
+  const titleWithBreaks = chunks.join('<wbr>');
+
   // create html markup
-  const markup = html`
+  // Note: Use string concatenation to avoid escaping of <wbr> tags
+  const markup = html(
+    `
     <div
       style="
     display: flex;
@@ -59,10 +69,13 @@ async function createOgImage(title: string): Promise<Buffer> {
       border-bottom: 4px solid rgba(147, 197, 253, 0.6);
     "
       >
-        ${title}
+        ` +
+      titleWithBreaks +
+      `
       </div>
     </div>
-  `;
+  `,
+  );
 
   // create svg
   const svg = await satori(markup, {
