@@ -19,7 +19,9 @@ async function createOgImage(title: string): Promise<Buffer> {
   const titleWithBreaks = chunks.join('<wbr>');
 
   // create html markup
-  const markup = html`
+  // Note: Use string concatenation to avoid escaping of <wbr> tags
+  const markup = html(
+    `
     <div
       style="
     display: flex;
@@ -67,10 +69,13 @@ async function createOgImage(title: string): Promise<Buffer> {
       border-bottom: 4px solid rgba(147, 197, 253, 0.6);
     "
       >
-        ${titleWithBreaks}
+        ` +
+      titleWithBreaks +
+      `
       </div>
     </div>
-  `;
+  `,
+  );
 
   // create svg
   const svg = await satori(markup, {
