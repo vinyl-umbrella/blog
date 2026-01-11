@@ -22,6 +22,8 @@ const closeBtn = document.getElementById(
 
 let miniSearch: MiniSearch<Doc> | null = null;
 let documents: Doc[] = [];
+let selectedIndex = -1;
+let currentResults: Array<{ id: string }> = [];
 
 async function ensureIndex() {
   if (miniSearch) return;
@@ -78,8 +80,32 @@ function makeExcerpt(text: string, terms: string[], maxLen = 160): string {
   return `${prefix}${raw}${suffix}`;
 }
 
+function updateSelectedResult() {
+  if (!resultsEl) return;
+  const items = resultsEl.querySelectorAll('.result-item');
+  items.forEach((item, idx) => {
+    if (idx === selectedIndex) {
+      item.classList.add('selected');
+      // Scroll the selected item into view
+      item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    } else {
+      item.classList.remove('selected');
+    }
+  });
+}
+
+function navigateToSelectedResult() {
+  if (selectedIndex < 0 || selectedIndex >= currentResults.length) return;
+  const doc = documents.find((d) => d.id === currentResults[selectedIndex].id);
+  if (doc) {
+    window.location.href = doc.url;
+  }
+}
+
 function renderResults(items: Array<{ id: string }>, query: string) {
   if (!resultsEl) return;
+  currentResults = items;
+  selectedIndex = -1; // Reset selection when results change
   if (!items?.length) {
     resultsEl.innerHTML = '';
     resultsEl.style.display = 'none';
@@ -90,14 +116,14 @@ function renderResults(items: Array<{ id: string }>, query: string) {
     .map((t) => t.trim())
     .filter((t) => t.length > 0);
   const html = items
-    .map((it) => {
+    .map((it, idx) => {
       const doc = documents.find((d) => d.id === it.id) ?? null;
       const used = doc ?? (it as unknown as Doc);
       const excerptRaw = makeExcerpt(used.content, terms, 160);
       const titleHtml = highlight(used.title, terms);
       const excerptHtml = highlight(excerptRaw, terms);
       return `
-        <a class="result-item" href="${used.url}" rel="noopener noreferrer">
+        <a class="result-item" href="${used.url}" rel="noopener noreferrer" data-index="${idx}">
           <div class="result-title">${titleHtml}</div>
           <div class="result-desc">${excerptHtml}</div>
         </a>
@@ -149,6 +175,23 @@ input?.addEventListener('input', () => {
   }
   const items = miniSearch ? miniSearch.search(q) : [];
   renderResults(items as Array<{ id: string }>, q);
+});
+
+input?.addEventListener('keydown', (e) => {
+  if (!currentResults.length) return;
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    selectedIndex = Math.min(selectedIndex + 1, currentResults.length - 1);
+    updateSelectedResult();
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    selectedIndex = Math.max(selectedIndex - 1, -1);
+    updateSelectedResult();
+  } else if (e.key === 'Enter' && selectedIndex >= 0) {
+    e.preventDefault();
+    navigateToSelectedResult();
+  }
 });
 
 dialog?.addEventListener('cancel', () => closeDialog());
