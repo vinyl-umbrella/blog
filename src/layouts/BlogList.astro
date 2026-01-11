@@ -1,12 +1,12 @@
 ---
-import Layout from '../layouts/General.astro';
+
+import type { CollectionEntry } from 'astro:content';
+import type { Page } from 'astro';
 import BlogCard from '../components/BlogCard.astro';
 import Pages from '../components/Pages.astro';
-
-import { SITE_DESCRIPTION } from '../consts';
-import type { Page } from 'astro';
-import type { CollectionEntry } from 'astro:content';
 import TagList from '../components/TagList.astro';
+import { SITE_DESCRIPTION } from '../consts';
+import Layout from '../layouts/General.astro';
 
 interface Props {
   page: Page<CollectionEntry<'blog'>>;

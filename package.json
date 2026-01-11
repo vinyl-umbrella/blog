@@ -21,6 +21,7 @@
     "astro": "^5.16.8",
     "budoux": "^0.7.0",
     "gray-matter": "^4.0.3",
+    "minisearch": "^7.2.0",
     "remark-breaks": "^4.0.0",
     "satori": "^0.18.3",
     "satori-html": "^0.3.2",

@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getContents } from '../utils/util';
 
 export async function GET(context) {

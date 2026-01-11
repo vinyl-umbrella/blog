@@ -51,8 +51,9 @@ function collectBlogLastmodMap() {
 
 function createBlogLastmodSerialize() {
   const MAP = collectBlogLastmodMap();
+  const now = new Date().toISOString();
+
   return function serialize(item) {
-    const now = new Date().toISOString();
     try {
       const u = new URL(item.url);
       const pathName = u.pathname.endsWith('/') ? u.pathname : `${u.pathname}/`;

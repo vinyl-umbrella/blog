@@ -1,10 +1,10 @@
 ---
-import Layout from '../layouts/General.astro';
-import Toc from '../components/Toc.astro';
 
-import { formatDate } from '../utils/util';
 import type { CollectionEntry } from 'astro:content';
 import type { MarkdownHeading } from 'astro';
+import Toc from '../components/Toc.astro';
+import Layout from '../layouts/General.astro';
+import { formatDate } from '../utils/util';
 
 interface Props {
   props: CollectionEntry<'blog'>['data'];
