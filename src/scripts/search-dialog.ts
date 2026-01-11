@@ -128,13 +128,16 @@ function closeDialog() {
 }
 
 btn?.addEventListener('click', openDialog);
+
 form?.addEventListener('submit', (e) => {
   // Enter でフォームを閉じないようにする (検索継続のため)
   e.preventDefault();
 });
+
 closeBtn?.addEventListener('click', () => {
   closeDialog();
 });
+
 input?.addEventListener('input', () => {
   const q = (input?.value || '').trim();
   if (!q) {
@@ -149,14 +152,6 @@ input?.addEventListener('input', () => {
 });
 
 dialog?.addEventListener('cancel', () => closeDialog());
-
 dialog?.addEventListener('click', (event) => {
-  if (!dialog) return;
-  const rect = dialog.getBoundingClientRect();
-  const inDialog =
-    rect.top <= event.clientY &&
-    event.clientY <= rect.top + rect.height &&
-    rect.left <= event.clientX &&
-    event.clientX <= rect.left + rect.width;
-  if (!inDialog) closeDialog();
+  if (event.target === dialog) closeDialog();
 });
