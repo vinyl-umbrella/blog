@@ -1,5 +1,4 @@
 ---
-import scriptUrl from '../scripts/search-dialog.ts?url';
 ---
 <dialog id="searchDialog">
   <form method="dialog" class="search-form" id="searchForm">
@@ -8,7 +7,6 @@ import scriptUrl from '../scripts/search-dialog.ts?url';
   </form>
   <div id="searchResults" class="results" role="list" aria-live="polite" aria-label="検索結果"></div>
 </dialog>
-<script type="module" src={scriptUrl}></script>
 
 <style>
   #searchDialog::backdrop {
@@ -93,3 +91,7 @@ import scriptUrl from '../scripts/search-dialog.ts?url';
     }
   }
 </style>
+
+<script>
+  import '../scripts/search-dialog.ts';
+</script>
