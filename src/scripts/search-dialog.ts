@@ -138,6 +138,7 @@ async function openDialog() {
   await ensureIndex();
   if (dialog && !dialog.open) dialog.showModal();
   input?.focus();
+  selectedIndex = -1;
   if (resultsEl) {
     resultsEl.innerHTML = '';
     resultsEl.style.display = 'none';
@@ -147,6 +148,7 @@ async function openDialog() {
 function closeDialog() {
   dialog?.close();
   if (input) input.value = '';
+  selectedIndex = -1;
   if (resultsEl) {
     resultsEl.innerHTML = '';
     resultsEl.style.display = 'none';
@@ -167,6 +169,7 @@ closeBtn?.addEventListener('click', () => {
 input?.addEventListener('input', () => {
   const q = (input?.value || '').trim();
   if (!q) {
+    selectedIndex = -1;
     if (resultsEl) {
       resultsEl.innerHTML = '';
       resultsEl.style.display = 'none';
