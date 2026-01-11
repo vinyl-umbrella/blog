@@ -1,0 +1,95 @@
+---
+import scriptUrl from '../scripts/search-dialog.ts?url';
+---
+<dialog id="searchDialog">
+  <form method="dialog" class="search-form" id="searchForm">
+    <input id="searchInput" type="search" placeholder="検索ワード" autofocus />
+    <button id="searchClose" class="close" type="button" aria-label="close">×</button>
+  </form>
+  <div id="searchResults" class="results"></div>
+</dialog>
+<script type="module" src={scriptUrl}></script>
+
+<style>
+  #searchDialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  #searchDialog {
+    border: 0;
+    padding: 0.75rem 0.75rem 0.5rem 0.75rem;
+    width: min(720px, 92vw);
+    background: var(--bg-color);
+    color: var(--text-color);
+
+    /* Form and results container backgrounds */
+    #searchForm {
+      background: var(--bg-color);
+      border: 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+
+      input {
+        border: 0;
+        border-radius: 6px;
+        background: var(--bg-secondary);
+        color: var(--text-color);
+        padding: 0.5rem 0.75rem;
+      }
+      .close {
+        border: 0;
+        background: transparent;
+        color: var(--text-color);
+        padding: 0.5rem 0.75rem;
+        cursor: pointer;
+      }
+    }
+
+    #searchResults {
+      background: var(--bg-secondary);
+      border: 1px solid var(--color-gray-700);
+      border-radius: var(--radius-md);
+      padding: 0.5rem;
+      display: none; /* 空時は非表示にする（初期状態） */
+      max-height: 60vh;
+      overflow-y: auto;
+
+      .result-item {
+        display: block;
+        padding: 0.6rem 0.7rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--text-color);
+        border: 1px solid var(--bg-secondary);
+        background: rgba(255, 255, 255, 0.03);
+        margin-bottom: 0.4rem;
+
+        &:hover {
+          border-color: var(--accent);
+          background: rgba(255, 255, 255, 0.06);
+        }
+
+        .result-title {
+          font-weight: 600;
+          margin-bottom: 0.2rem;
+        }
+
+        .result-desc {
+          color: var(--text-muted);
+          opacity: 0.9;
+          font-size: 0.95em;
+          line-height: 1.35;
+        }
+
+        mark {
+          background: color-mix(in oklab, var(--accent) 65%, rgba(255,255,255,0%));
+          color: var(--bg-color);
+          padding: 0 2px;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+</style>

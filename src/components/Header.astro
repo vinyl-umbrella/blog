@@ -1,7 +1,7 @@
 ---
-
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import SearchDialog from './SearchDialog.astro';
 ---
 
 <header>
@@ -14,15 +14,17 @@ import HeaderLink from './HeaderLink.astro';
     </div>
 
     <div></div>
-    <!-- <button id='searchButton' aria-label='search button'>
+    <button id='searchButton' aria-label='search button'>
       <svg stroke-width='2' stroke='currentColor' fill='none'>
         <path stroke='none'></path>
         <circle cx='9' cy='9' r='7'></circle>
         <line x1='21' y1='21' x2='14' y2='14'></line>
       </svg>
-    </button> -->
+    </button>
   </nav>
 </header>
+
+<SearchDialog />
 
 <style>
   header {
@@ -80,9 +82,9 @@ import HeaderLink from './HeaderLink.astro';
       color: var(--accent);
     }
 
-    /* > svg {
+    > svg {
       width: 24px;
       height: 24px;
-    } */
+    }
   }
 </style>
