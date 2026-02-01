@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import { loadDefaultJapaneseParser } from 'budoux';
-import { html } from 'satori-html';
 import satori from 'satori';
+import { html } from 'satori-html';
 import sharp from 'sharp';
 
 // Load BudouX parser once to avoid repeated initialization
