@@ -1,10 +1,8 @@
 ---
-
-import Layout from '../../../layouts/BlogList.astro';
-
-import { getContents, getTags } from '../../../utils/util';
-import type { GetStaticPathsOptions, Page } from 'astro';
 import type { CollectionEntry } from 'astro:content';
+import type { GetStaticPathsOptions, Page } from 'astro';
+import Layout from '../../../layouts/BlogList.astro';
+import { getContents, getTags } from '../../../utils/util';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = await getContents();
