@@ -54,7 +54,7 @@ https://github.com/vinyl-umbrella/playground/blob/55b4fd75c5c1505b70d1108e6d8d09
 | Linux Kernel | 6.6.87     |
 | Go           | 1.22.4     |
 
-その他 Go モジュールバージョン
+その他 Go モジュールバージョン．
 
 https://github.com/vinyl-umbrella/playground/blob/55b4fd75c5c1505b70d1108e6d8d09e9cd2bfce9/aws/s3go/go.mod
 
