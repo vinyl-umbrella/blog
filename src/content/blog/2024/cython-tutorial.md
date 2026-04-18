@@ -1,6 +1,7 @@
 ---
 title: Cython で遊んでみた
 pubDate: 2024-02-10
+updatedDate: 2026-04-19
 description: Cython による高速化を試してみました．どの程度高速化できるのか，竹内関数を実装して比較してみました．
 tags: ['python']
 ---
@@ -50,17 +51,7 @@ pip install cython
 [私のGitHub](https://github.com/vinyl-umbrella/playground/tree/main/python/cython) にもコードを置いておきます．
 先ほど示したように，`cpdef` で宣言しています．また，`int` 型の引数を受け取り，`int` 型の戻り値を返すことを明示しています．
 
-```pyx tarai.pyx
-cpdef int tarai(int n):
-    if n == 0 or n == 1:
-        return 0
-
-    elif n == 2:
-        return 1
-
-    else:
-        return tarai(n - 1) + tarai(n - 2) + tarai(n - 3)
-```
+https://github.com/vinyl-umbrella/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/python/cython/tarai.pyx#L1-L9
 
 ### ビルド
 
@@ -69,18 +60,7 @@ cpdef int tarai(int n):
 `setup()` には，ビルド時のオプションとして，`build_ext` と `--inplace` を指定しています．
 これらにより，ビルドしたファイルがカレントディレクトリに出力されます．
 
-```python setup.py
-from distutils.core import setup
-from Cython.Build import cythonize
-
-setup(
-    ext_modules=cythonize(
-        "tarai.pyx",
-        compiler_directives={"language_level": "3"},
-    ),
-    script_args=["build_ext", "--inplace"],
-)
-```
+https://github.com/vinyl-umbrella/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/python/cython/setup.py#L1-L10
 
 `setup.py` を実行するだけでビルドできます！
 また，ビルド時に，どのようにしてビルドしているか出力されます．`gcc` を使っていることや，`-O2` オプション等が指定されていることがわかります．
@@ -144,35 +124,7 @@ print(result)
 
 Python でも同様の竹内関数を実装し，実行時間を比較してみます．
 
-```py compare.py
-import time
-
-import tarai
-
-
-def pytarai(n) -> int:
-    if n == 0 or n == 1:
-        return 0
-    elif n == 2:
-        return 1
-    else:
-        return pytarai(n - 1) + pytarai(n - 2) + pytarai(n - 3)
-
-
-n = 30
-s1 = time.perf_counter()
-pytarai(n)
-total1 = time.perf_counter() - s1
-print("python:\t", total1)
-
-s2 = time.perf_counter()
-tarai.tarai(n)
-total2 = time.perf_counter() - s2
-print("cython:\t", total2)
-
-
-print(total1 / total2)
-```
+https://github.com/vinyl-umbrella/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/python/cython/sample.py#L1-L27
 
 ### 実行結果
 
