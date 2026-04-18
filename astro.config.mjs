@@ -2,7 +2,9 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import remarkBreaks from 'remark-breaks';
+import rehypeGithubPermalinkEmbed from './src/plugins/rehypeGithubPermalinkEmbed';
 import addCodeUtil from './src/plugins/remarkAddCodeUtil';
+import remarkGithubPermalinkEmbed from './src/plugins/remarkGithubPermalinkEmbed';
 import linkNewTab from './src/plugins/remarkLinkNewTab';
 import remarkMermaidDetector from './src/plugins/remarkMermaidDetector';
 import { blogLastmodSerialize } from './src/utils/blogLastmod.js';
@@ -36,10 +38,12 @@ export default defineConfig({
     },
     remarkPlugins: [
       addCodeUtil,
+      remarkGithubPermalinkEmbed,
       linkNewTab,
       remarkMermaidDetector,
       remarkBreaks,
     ],
+    rehypePlugins: [rehypeGithubPermalinkEmbed],
   },
   vite: {
     optimizeDeps: {

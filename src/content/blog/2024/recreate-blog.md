@@ -1,7 +1,7 @@
 ---
 title: Astro@4でブログを再構築
 pubDate: 2024-01-14
-updatedDate: 2024-02-23
+updatedDate: 2026-04-19
 description: 放置していたブログをAstro@4で作り直しました
 tags: ['astro', 'front']
 ---
@@ -51,92 +51,15 @@ HTML 上のタグが長く長すぎるのも避けたいです．
 コピーボタンの実装をいくつか読んでみましたが，クライアント側の js でコピーボタンを作ってるものが多かったです．
 
 私はビルド時にボタンの生成までやりたかったので，remark で実現しました．
-`src/plugins/remarkAddUtil.js` にファイル名の追加と，コピーボタンの追加をしています．
+`src/plugins/remarkAddCodeUtil.js` にファイル名の追加と，コピーボタンの追加をしています．
 これを `astro.config.mjs` で `remarkPlugins` に食わせることで，ビルド時にボタンの追加を実現できました．
 
 クライアント側であまりスクリプトを使わないようにしたかったけれでも，コピーするアクションはクライアント側でしかできないので，コピーの実現は `src/layouts/BlogPost.astro` に記述しています．
 
 また，ボタンやファイル名のスタイルは，`/src/styles/global.css` に記述しています．
+https://github.com/vinyl-umbrella/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/plugins/remarkAddCodeUtil.js#L1-L45
 
-```js src/plugins/remarkAddUtil.js
-import { visit } from 'unist-util-visit';
-
-const reCodeblock = () => {
-  return (tree) => {
-    visit(tree, 'code', (ele, index, parent) => {
-      const codeblockMeta = {
-        type: 'container',
-        data: {
-          hName: 'div',
-          hProperties: {
-            className: ['remark-codeblock'],
-          },
-        },
-        children: [
-          {
-            type: 'paragraph',
-            data: {
-              hName: 'div',
-              hProperties: {
-                className: ['remark-code-title'],
-              },
-            },
-            children: [{ type: 'text', value: ele.meta || '' }],
-          },
-          {
-            type: 'container',
-            data: {
-              hName: 'button',
-              hProperties: {
-                className: ['remark-code-copy-button'],
-              },
-            },
-            children: [{ type: 'text', value: 'Copy' }],
-          },
-        ],
-      };
-
-      parent.children.splice(index, 0, codeblockMeta);
-      // skip title element
-      return index + 2;
-    });
-  };
-};
-
-export default reCodeblock;
-```
-
-```astro src/layouts/BlogPost.astro
-...
-
-<script is:inline>
-  function attachListenerToCopyButton() {
-    async function copyCode(block, button) {
-      const code = block.querySelector('code');
-      const text = code?.innerText;
-
-      await navigator.clipboard.writeText(text ?? '');
-
-      button.innerText = 'Copied';
-      setTimeout(() => {
-        button.innerText = 'Copy';
-      }, 700);
-    }
-
-    let codeBlocks = Array.from(document.querySelectorAll('pre'));
-    for (let codeBlock of codeBlocks) {
-      let copyButton = codeBlock.previousElementSibling.querySelector(
-        '.remark-code-copy-button',
-      );
-
-      copyButton.addEventListener('click', async () => {
-        await copyCode(codeBlock, copyButton);
-      });
-    }
-  }
-  attachListenerToCopyButton();
-</script>
-```
+https://github.com/vinyl-umbrella/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/layouts/BlogPost.astro#L128-L154
 
 ### og画像の生成
 
@@ -145,70 +68,9 @@ export default reCodeblock;
 astro でブログを作って公開している人たちにとても感謝しています．ありがとうございます！
 先人たちは，ビルド時に Google Fonts からフォントの URL を取得して，そのファイルをぶっこ抜いて，むりやり生成している例が多かったですが，私は，フォントはローカルに用意して置いたものを使ってます．
 
-```ts src/pages/og/[...slug].webp.ts
-import type { APIContext } from 'astro';
-import { createOgImage } from '../../utils/og';
-import { getContents } from '../../utils/util';
+https://github.com/vinyl-umbrella/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/pages/og/%5B...slug%5D.webp.ts#L1-L23
 
-export async function getStaticPaths() {
-  const posts = await getContents();
-  return posts.map((post) => ({ params: { slug: post.slug } }));
-}
-
-export async function GET({ params }: APIContext) {
-  const { slug } = params;
-  if (!slug) return { status: 404 };
-  const posts = (await getContents()).find((post) => post.slug === slug);
-  if (!posts) return { status: 404 };
-
-  const body = await createOgImage(posts.data.title);
-  return new Response(body, {
-    status: 200,
-    headers: {
-      'Content-Type': 'image/webp',
-    },
-  });
-}
-```
-
-```ts src/utils/og.ts
-import fs from 'fs/promises';
-import { html } from 'satori-html';
-import satori from 'satori';
-import sharp from 'sharp';
-
-async function getFont(): Promise<Buffer> {
-  return await fs.readFile(
-    // donwloaded from google fonts
-    'src/fonts/noto-sans-jp-v52-japanese_latin-regular.woff',
-  );
-}
-
-async function createOgImage(title: string): Promise<Buffer> {
-  // create html markup
-  const markup = html` ここにog画像となるhtmlを書く `;
-
-  // create svg
-  const svg = await satori(markup, {
-    width: 1200,
-    height: 630,
-    embedFont: true,
-    fonts: [
-      {
-        name: 'NotoSansJP',
-        data: await getFont(),
-        weight: 400,
-        style: 'normal',
-      },
-    ],
-  });
-
-  // create png with sharp
-  return await sharp(Buffer.from(svg)).webp().toBuffer();
-}
-
-export { createOgImage };
-```
+https://github.com/vinyl-umbrella/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/utils/og.ts#L1-L86
 
 ## フォルダ構成
 

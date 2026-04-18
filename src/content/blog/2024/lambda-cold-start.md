@@ -1,6 +1,7 @@
 ---
 title: AWS Lambda で環境変数が変更されたときも，コールドスタートになります
 pubDate: 2024-04-06
+updatedDate: 2026-04-19
 description: AWS Lambda で環境変数が変れたとき，コールドスタートになるのか試してみました．
 tags: ['python', 'aws', 'tips']
 ---
@@ -14,37 +15,13 @@ AWS Lambda において，ハンドラ外のコードはコールドスタート
 
 # 実行環境
 
-実際に使用したコード，インフラ構成は [こちら](https://github.com/vinyl-umbrella/playground/tree/main/cloud/lambda-cold-start)．
+実際に使用したコード，インフラ構成は [こちら](https://github.com/vinyl-umbrella/playground/tree/aa89c993e46e718cf646ce5e38380bfc27d3bc52/aws/lambda-cold-start)．
 
 Lambda 関数は以下の実装になっています．
 ハンドラ外で，現在時刻，環境変数を取得し，ハンドラ内でも現在時刻を取得しています．
 そして，それらをレスポンスとして返しています．
 
-```py main.py
-import json
-import os
-from datetime import datetime
-
-time_out_of_handler = datetime.now()
-env_user = os.environ.get("USER")
-
-
-def lambda_handler(event, context):
-    time_in_handler = datetime.now()
-    print(f"Time out of handler: {time_out_of_handler}")
-    print(f"Time in handler: {time_in_handler}")
-    print(f"env value: {env_user}")
-    return {
-        "statusCode": 200,
-        "body": json.dumps(
-            {
-                "time_out_of_handler": str(time_out_of_handler),
-                "time_in_handler": str(time_in_handler),
-                "env_user": env_user,
-            }
-        ),
-    }
-```
+https://github.com/vinyl-umbrella/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/aws/lambda-cold-start/src/main.py#L1-L24
 
 # 実験
 
