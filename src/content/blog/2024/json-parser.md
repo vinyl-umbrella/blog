@@ -19,7 +19,7 @@ tags: ['tips']
 > Many implementations report the last name/value pair only. Other implementations report an error or fail to parse the object, and some implementations report all of the name/value pairs, including duplicates.
 
 このことから，JSON のパーサの挙動の違いに基づいた脆弱性が Flatt のクイズでした．
-忘備録として，いくつかの言語の JSON パーサの挙動を調査し，ここにまとめておきます．
+備忘録として，いくつかの言語の JSON パーサの挙動を調査し，ここにまとめておきます．
 
 ## 実験
 

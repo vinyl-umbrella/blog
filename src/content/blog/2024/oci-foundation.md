@@ -179,10 +179,10 @@ Allow group OCI-Admin to manage compartments in tenancy
 
 #### File Storage
 
-- 複数インスタンスからマウンっとできる
+- 複数インスタンスからマウントできる
 - ファイルシステム
 
-#### Object Strorage
+#### Object Storage
 
 - (S3)
 - オブジェクトは key に対する value (ファイル)で管理 + メタデータ
@@ -214,7 +214,7 @@ Allow group OCI-Admin to manage compartments in tenancy
   - Higher Performance (75)
   - Ultra High Performance(90-225)
 
-- デタッチすると Lower cost に自動で変わる．アタッチすると胃是の設定に自動で変わる．
+- デタッチすると Lower cost に自動で変わる．アタッチすると以前の設定に自動で変わる．
 - read/write sharable タイプに設定すると，1 つのディスクを複数の VM と共有できる (EBS と異なる)
 - デタッチせず，稼働したまま拡張可能
 - 非同期で別リージョンにレプリケーション

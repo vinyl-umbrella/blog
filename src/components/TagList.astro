@@ -26,12 +26,12 @@ const { classname } = Astro.props;
 
 <style>
   .sidebar-tags {
-    top: 100px;
+    top: calc(var(--header-height) + 1rem);
     display: block;
     padding: 0.5em;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: var(--bg-color);
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--color-gray-700);
     border-radius: 0.5em;
 
     h3 {
