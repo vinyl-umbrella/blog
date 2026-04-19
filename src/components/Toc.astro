@@ -27,16 +27,16 @@ const { headings } = Astro.props;
 
 <style>
   .toc {
-    top: 95px;
+    top: calc(var(--header-height) + 1rem);
     position: sticky;
     display: block;
     width: 12em;
     height: 300px;
     max-height: 50%;
     padding: 0.5em;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: var(--bg-color);
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--color-gray-700);
     border-radius: 0.5em;
 
     @media (max-width: 768px) {
