@@ -2,7 +2,7 @@
 title: AWS Lambda で環境変数が変更されたときも，コールドスタートになります
 pubDate: 2024-04-06
 updatedDate: 2026-04-19
-description: AWS Lambda で環境変数が変れたとき，コールドスタートになるのか試してみました．
+description: AWS Lambda で環境変数が変わったとき，コールドスタートになるのか試してみました．
 tags: ['python', 'aws', 'tips']
 ---
 
