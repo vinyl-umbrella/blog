@@ -6,7 +6,7 @@ import SearchDialog from './SearchDialog.astro';
 
 <header>
   <nav>
-    <h2><a href='/'>{SITE_TITLE}</a></h2>
+    <span class='site-title'><a href='/'>{SITE_TITLE}</a></span>
 
     <div class='internal-links'>
       <HeaderLink href='/'>blog</HeaderLink> |
@@ -45,14 +45,15 @@ import SearchDialog from './SearchDialog.astro';
     -webkit-backdrop-filter: blur(8px);
   }
 
-  h2 {
+  .site-title {
     margin: 0;
     font-size: 1em;
+    font-weight: bold;
     padding-left: 1em;
-  }
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
+    a,
+    a.active {
+      text-decoration: none;
+    }
   }
 
   nav {

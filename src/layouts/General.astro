@@ -8,14 +8,23 @@ import { SITE_TITLE } from '../consts';
 interface Props {
   title: string;
   description: string;
+  pubDate?: Date;
+  updatedDate?: Date;
+  tags?: string[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, pubDate, updatedDate, tags } = Astro.props;
 ---
 
 <html lang='ja'>
   <head>
-    <BaseHead title={`${title} | ${SITE_TITLE}`} description={description} />
+    <BaseHead
+      title={`${title} | ${SITE_TITLE}`}
+      description={description}
+      pubDate={pubDate}
+      updatedDate={updatedDate}
+      tags={tags}
+    />
   </head>
   <body>
     <Header />

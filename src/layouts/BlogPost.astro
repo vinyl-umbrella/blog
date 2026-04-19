@@ -18,18 +18,18 @@ const { needsMermaid } = Astro.props;
 headings.unshift({ depth: 1, text: title, slug: title });
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} pubDate={pubDate} updatedDate={updatedDate} tags={tags}>
   <div class='main'>
     <Toc headings={headings} />
     <article>
       <div class='prose'>
         <div class='title'>
           <div class='sub'>
-            {formatDate(pubDate)}
+            <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
             {
               updatedDate && (
                 <span class='last-updated-on'>
-                  (↻{formatDate(updatedDate)}更新)
+                  (↻<time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time>更新)
                 </span>
               )
             }
