@@ -2,10 +2,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeKatex from 'rehype-katex';
 import rehypeSlug from 'rehype-slug';
 import remarkBreaks from 'remark-breaks';
-import remarkMath from 'remark-math';
 import rehypeGithubPermalinkEmbed from './src/plugins/rehypeGithubPermalinkEmbed';
 import addCodeUtil from './src/plugins/remarkAddCodeUtil';
 import remarkGithubPermalinkEmbed from './src/plugins/remarkGithubPermalinkEmbed';
@@ -42,12 +40,10 @@ export default defineConfig({
       remarkGithubPermalinkEmbed,
       linkNewTab,
       remarkMermaidDetector,
-      remarkMath,
       remarkBreaks,
     ],
     rehypePlugins: [
       rehypeGithubPermalinkEmbed,
-      rehypeKatex,
       rehypeSlug,
       [
         rehypeAutolinkHeadings,
