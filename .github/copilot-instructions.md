@@ -45,7 +45,7 @@ draft: true # 下書きの場合にのみ設定
 ### Markdown の書き方
 
 - **コードブロック**: バッククォートの後ろに言語名を指定する．ファイル名を記載したほうが伝わりやすい場合は，言語名の後ろにスペースを挟んで記載する (例: `` ```ts index.ts ``) ．remarkAddCodeUtil プラグインがタイトル表示に変換する
-- **実在するコードの引用**: Markdown 内にコピペせず，GitHub のパーマネントリンクを貼って埋め込む．remarkGithubPermalinkEmbed プラグインが自動でコード埋め込みに変換する
+- **実在するコードの引用**: Markdown 内にコピペせず，GitHub のパーマネントリンクを貼って埋め込む．`remarkGithubPermalinkEmbed` プラグインが対象リンクをマークし，`rehypeGithubPermalinkEmbed` プラグインがコード埋め込みの取得・描画を行う
 - **図**: 図は可能であればアスキーでの表現ではなく，mermaid での表現をしましょう．コードブロックで言語を `mermaid` に指定すると描画される
 - **外部リンク**: 自動で新しいタブで開く
 
