@@ -14,8 +14,8 @@ const { slug, z } = Astro.props;
   <article class='content'>
     <div class='info'>
       <div class='sub'>
-        {formatDate(z.pubDate)}
-        {z.updatedDate && ` (↻${formatDate(z.updatedDate)}更新)`}
+        <time datetime={z.pubDate.toISOString()}>{formatDate(z.pubDate)}</time>
+        {z.updatedDate && <> (↻<time datetime={z.updatedDate.toISOString()}>{formatDate(z.updatedDate)}</time>更新)</>}
       </div>
       <a href={`/blog/${slug}/`} aria-label={z.title}>
         <h2>{z.title}</h2>

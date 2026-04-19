@@ -22,13 +22,13 @@ const { page, tag } = Astro.props;
     <TagList classname='side' />
     <div class='articles'>
       <div class='top'>
-        <h3>
+        <h1>
           {
             page.currentPage === 1
               ? `${tag}の最新記事`
               : `${tag}の記事一覧-${page.currentPage}`
           }
-        </h3>
+        </h1>
         {
           tag === 'すべて' ? (
             <a href='/rss.xml' aria-label='rss'>

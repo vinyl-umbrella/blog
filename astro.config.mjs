@@ -21,10 +21,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) =>
-        !page.match(/\/blog\/draft\//g) &&
-        !page.match(/\/tags\//g) &&
-        !page.match(/\/\d+\/$/g),
+      filter: (page) => !page.match(/\/blog\/draft\//g),
       priority: 0.7,
       serialize: blogLastmodSerialize,
     }),
