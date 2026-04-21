@@ -3,7 +3,7 @@ title: uv, AWS SAM, Trivy を使った快適な開発環境
 pubDate: 2025-03-16
 updatedDate: 2026-04-19
 description: uv, AWS SAM, Trivy を使った Python の快適な開発環境, CI/CD 環境を構築しました．
-tags: ['aws', 'python']
+tags: ['aws', 'python', 'devops']
 ---
 
 プライベートで簡単なものを作るときは，Python を使って AWS にデプロイすることが多く，そのテンプレとなるリポジトリを作ってみました．

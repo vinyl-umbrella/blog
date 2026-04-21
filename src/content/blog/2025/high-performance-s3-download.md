@@ -3,7 +3,7 @@ title: Go での高効率で高速な S3 ダウンロードの実装
 pubDate: 2025-08-02
 updatedDate: 2025-08-06
 description: Go 言語での AWS S3 から大容量ファイルを効率的にダウンロードする方法について．メモリ効率と並列処理による最適化手法．
-tags: ['aws', 'go']
+tags: ['aws', 'go', 'performance']
 ---
 
 ## はじめに

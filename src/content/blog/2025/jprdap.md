@@ -2,7 +2,7 @@
 title: rdap サーバを作った
 pubDate: 2025-10-02
 description: .jp ドメインが RDAP プロトコルに対応していないため，自前で RDAP サーバを構築しました．
-tags: ['domain']
+tags: ['network']
 ---
 
 ## 背景

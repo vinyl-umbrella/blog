@@ -2,7 +2,7 @@
 title: ALB のターゲットに Lambda を指定する際のアーキテクチャメモ
 pubDate: 2025-12-15
 description: ALB のターゲットに Lambda 関数を指定するアーキテクチャの最小構成と注意点
-tags: ['aws']
+tags: ['aws', 'architecture']
 ---
 
 ## はじめに

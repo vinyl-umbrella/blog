@@ -3,7 +3,7 @@ title: Astro@4でブログを再構築
 pubDate: 2024-01-14
 updatedDate: 2026-04-19
 description: 放置していたブログをAstro@4で作り直しました
-tags: ['astro', 'front']
+tags: ['astro', 'frontend']
 ---
 
 一年ほど前，[Astro@2 で環境構築](/blog/2023/first-article/) まではやったけれども，メンテしておらず，余裕がなかったため，放置していたブログを再構築してみた．

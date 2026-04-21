@@ -2,7 +2,7 @@
 title: New Relic のオンライン試験を受けてみて合格した
 pubDate: 2025-03-01
 description: Tシャツがもらえるらしいので New Relic の Full Stack Observability Practitioner Exam を受けてみた
-tags: ['newrelic']
+tags: ['newrelic', 'certification']
 ---
 
 先日メールで New Relic の試験に合格すると T シャツがもらえるよーと案内が来ていました．

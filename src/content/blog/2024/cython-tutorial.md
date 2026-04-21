@@ -3,7 +3,7 @@ title: Cython で遊んでみた
 pubDate: 2024-02-10
 updatedDate: 2026-04-19
 description: Cython による高速化を試してみました．どの程度高速化できるのか，竹内関数を実装して比較してみました．
-tags: ['python']
+tags: ['python', 'performance']
 ---
 
 先日，[pandasのTimestampの実装](https://github.com/pandas-dev/pandas/blob/main/pandas/_libs/tslibs/timestamps.pyx) を読む機会がありました．pandas では，`pyx` という見慣れない拡張子のファイルで，プログラムが実装されていました．
