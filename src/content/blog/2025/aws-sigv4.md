@@ -3,7 +3,7 @@ title: AWS Signature Version 4 (SigV4) の解説
 pubDate: 2025-06-14
 updatedDate: 2026-04-19
 description: SigV4 の仕様を理解し実装したので，学習メモとしておいておきます．
-tags: ['aws']
+tags: ['aws', 'security']
 ---
 
 AWS を使う上で，認証がどうなっているのか，アクセスキーとは何なのかが気になったので，その仕様を調査し実際に実装してみました．

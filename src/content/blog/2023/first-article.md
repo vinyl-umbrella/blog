@@ -2,7 +2,7 @@
 title: Astro@2でブログを開設
 pubDate: 2023-01-31
 description: astroでブログを一から作ってみた
-tags: ['astro', 'front']
+tags: ['astro', 'frontend']
 ---
 
 修論が終わってようやくリラックスできる時間ができたが，同時に学生の終わり，すなわち社会人の始まりを実感します．

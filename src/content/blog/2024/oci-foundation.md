@@ -2,7 +2,7 @@
 title: OCI 2023 Foundations Associate 合格体験記
 pubDate: 2024-05-05
 description: Oracle Cloud Infrastructure 2023 Foundations Associate に合格したので，学習した内容をここに残します．
-tags: ['oci']
+tags: ['oci', 'certification']
 ---
 
 ## はじめに
