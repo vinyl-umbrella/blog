@@ -35,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        task: ["fmt:check", "textlint", "astro check"]
+        task: [ "fmt:check", "textlint", "astro check", "lint" ]
     steps:
       - uses: actions/checkout@v6
       - name: setup node
