@@ -14,7 +14,7 @@ import SearchDialog from './SearchDialog.astro';
     </div>
 
     <div></div>
-    <button id='searchButton' aria-label='search button'>
+    <button id='searchButton' aria-label='search button' type="button">
       <svg viewBox='0 0 24 24' aria-hidden='true' fill='none'>
         <defs>
           <mask id='lens-cutout'>
@@ -50,10 +50,6 @@ import SearchDialog from './SearchDialog.astro';
     font-size: 1em;
     font-weight: bold;
     padding-left: 1em;
-    a,
-    a.active {
-      text-decoration: none;
-    }
   }
 
   nav {
@@ -65,11 +61,15 @@ import SearchDialog from './SearchDialog.astro';
       color: var(--text-color);
       border-bottom: 4px solid transparent;
       text-decoration: none;
+
+      &.active {
+        text-decoration: none;
+        border-bottom-color: var(--accent);
+      }
     }
 
-    a.active {
+    .site-title a {
       text-decoration: none;
-      border-bottom-color: var(--accent);
     }
   }
 
