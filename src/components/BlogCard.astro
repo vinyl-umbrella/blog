@@ -24,7 +24,7 @@ const { slug, z } = Astro.props;
         {
           z.description.length < 50
             ? z.description
-            : z.description.slice(0, 100) + '...'
+            : `${z.description.slice(0, 100)}...`
         }
       </div>
       <div class='sub'>
