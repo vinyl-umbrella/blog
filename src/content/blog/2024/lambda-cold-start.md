@@ -15,13 +15,13 @@ AWS Lambda において，ハンドラ外のコードはコールドスタート
 
 # 実行環境
 
-実際に使用したコード，インフラ構成は [こちら](https://github.com/vinyl-umbrella/playground/tree/aa89c993e46e718cf646ce5e38380bfc27d3bc52/aws/lambda-cold-start)．
+実際に使用したコード，インフラ構成は [こちら](https://github.com/jjjsmz/playground/tree/aa89c993e46e718cf646ce5e38380bfc27d3bc52/aws/lambda-cold-start)．
 
 Lambda 関数は以下の実装になっています．
 ハンドラ外で，現在時刻，環境変数を取得し，ハンドラ内でも現在時刻を取得しています．
 そして，それらをレスポンスとして返しています．
 
-https://github.com/vinyl-umbrella/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/aws/lambda-cold-start/src/main.py#L1-L24
+https://github.com/jjjsmz/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/aws/lambda-cold-start/src/main.py#L1-L24
 
 # 実験
 

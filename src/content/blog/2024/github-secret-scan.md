@@ -26,7 +26,7 @@ Organization が GitHub Enterprise を利用している場合にのみ，GitHub
 
 検証用リポジトリに，シークレット情報を含むコードをプッシュしてみました．もちろん値はダミーですよ．
 
-push できてしまいました... ([該当コミット](https://github.com/vinyl-umbrella/playground/commit/78f7977e73fc6da8d91c056b85067cc1a1133576))
+push できてしまいました... ([該当コミット](https://github.com/jjjsmz/playground/commit/78f7977e73fc6da8d91c056b85067cc1a1133576))
 
 クレデンシャルと認識されなかったのかと悩み，[ドキュメント](https://docs.github.com/ja/code-security/secret-scanning/secret-scanning-patterns#supported-secrets) を見ると，サポートされているシークレットの種類が限られているようです．
 また，Enterprise の場合は，一部のサービスのトークンには [有効性チェック](https://docs.github.com/ja/enterprise-cloud@latest/code-security/secret-scanning/secret-scanning-patterns#supported-secrets) も行われるようです．
@@ -44,7 +44,7 @@ Writing objects: 100% (5/5), 449 bytes | 449.00 KiB/s, done.
 Total 5 (delta 1), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 remote: error: GH013: Repository rule violations found for refs/heads/main.
-remote: Review all repository rules at http://github.com/vinyl-umbrella/playground/rules?ref=refs%2Fheads%2Fmain
+remote: Review all repository rules at http://github.com/jjjsmz/playground/rules?ref=refs%2Fheads%2Fmain
 remote:
 remote: - GITHUB PUSH PROTECTION
 remote:   ——————————————————————————————————————————————————————
@@ -60,7 +60,7 @@ remote:      - commit: 530e49bace6618aad9879ecfceb639cd9ae3586c
 remote:        path: etc/secret-scan/env:1
 remote:
 remote:    (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:    https://github.com/vinyl-umbrella/playground/security/secret-scanning/unblock-secret/2dToAHHLzAQAfT6mCwkJUUw85Hm
+remote:    https://github.com/jjjsmz/playground/security/secret-scanning/unblock-secret/2dToAHHLzAQAfT6mCwkJUUw85Hm
 remote:
 remote:
 remote:   —— Amazon AWS Secret Access Key ——————————————————————
@@ -69,11 +69,11 @@ remote:      - commit: 530e49bace6618aad9879ecfceb639cd9ae3586c
 remote:        path: etc/secret-scan/env:2
 remote:
 remote:    (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:    https://github.com/vinyl-umbrella/playground/security/secret-scanning/unblock-secret/2dToAC3qFSwmok5ngkHyFouLuGo
+remote:    https://github.com/jjjsmz/playground/security/secret-scanning/unblock-secret/2dToAC3qFSwmok5ngkHyFouLuGo
 remote:
-To github.com:vinyl-umbrella/playground.git
+To github.com:jjjsmz/playground.git
  ! [remote rejected] HEAD -> main (push declined due to repository rule violations)
-error: failed to push some refs to 'github.com:vinyl-umbrella/playground.git'
+error: failed to push some refs to 'github.com:jjjsmz/playground.git'
 ```
 
 ## まとめ
