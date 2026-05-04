@@ -7,7 +7,7 @@ tags: ['aws', 'security']
 ---
 
 AWS を使う上で，認証がどうなっているのか，アクセスキーとは何なのかが気になったので，その仕様を調査し実際に実装してみました．
-[私のサンプル実装](https://github.com/vinyl-umbrella/sigv4)
+[私のサンプル実装](https://github.com/jjjsmz/sigv4)
 
 詳細な仕様は [AWS のドキュメント](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html)をご参照ください．
 
@@ -52,7 +52,7 @@ AWS CLI を触ったことがある方は，`aws lambda list-functions` や `aws
 
 順を追って署名の生成について説明します．
 
-https://github.com/vinyl-umbrella/sigv4/blob/e2496042d298ae02e1909f67e3bce1dd6157cb7c/sigv4/signer.go#L36-L66
+https://github.com/jjjsmz/sigv4/blob/e2496042d298ae02e1909f67e3bce1dd6157cb7c/sigv4/signer.go#L36-L66
 
 ### 正規化リクエストの生成
 

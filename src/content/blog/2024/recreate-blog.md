@@ -57,9 +57,9 @@ HTML 上のタグが長く長すぎるのも避けたいです．
 クライアント側であまりスクリプトを使わないようにしたかったけれでも，コピーするアクションはクライアント側でしかできないので，コピーの実現は `src/layouts/BlogPost.astro` に記述しています．
 
 また，ボタンやファイル名のスタイルは，`/src/styles/global.css` に記述しています．
-https://github.com/vinyl-umbrella/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/plugins/remarkAddCodeUtil.js#L1-L45
+https://github.com/jjjsmz/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/plugins/remarkAddCodeUtil.js#L1-L45
 
-https://github.com/vinyl-umbrella/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/layouts/BlogPost.astro#L128-L154
+https://github.com/jjjsmz/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/layouts/BlogPost.astro#L128-L154
 
 ### og画像の生成
 
@@ -68,9 +68,9 @@ https://github.com/vinyl-umbrella/blog/blob/4101e558e31471928781d55b708da8e88b2d
 astro でブログを作って公開している人たちにとても感謝しています．ありがとうございます！
 先人たちは，ビルド時に Google Fonts からフォントの URL を取得して，そのファイルをぶっこ抜いて，むりやり生成している例が多かったですが，私は，フォントはローカルに用意して置いたものを使ってます．
 
-https://github.com/vinyl-umbrella/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/pages/og/%5B...slug%5D.webp.ts#L1-L23
+https://github.com/jjjsmz/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/pages/og/%5B...slug%5D.webp.ts#L1-L23
 
-https://github.com/vinyl-umbrella/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/utils/og.ts#L1-L86
+https://github.com/jjjsmz/blog/blob/4101e558e31471928781d55b708da8e88b2d468a/src/utils/og.ts#L1-L86
 
 ## フォルダ構成
 

@@ -48,10 +48,10 @@ pip install cython
 
 パフォーマンス測定によく使われる [竹内関数](https://ja.wikipedia.org/wiki/%E7%AB%B9%E5%86%85%E9%96%A2%E6%95%B0) を実装してみます．
 以下が，Cython で実装した竹内関数です．(syntax highlight してくれなくて悲しい...)
-[私のGitHub](https://github.com/vinyl-umbrella/playground/tree/main/python/cython) にもコードを置いておきます．
+[私のGitHub](https://github.com/jjjsmz/playground/tree/main/python/cython) にもコードを置いておきます．
 先ほど示したように，`cpdef` で宣言しています．また，`int` 型の引数を受け取り，`int` 型の戻り値を返すことを明示しています．
 
-https://github.com/vinyl-umbrella/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/python/cython/tarai.pyx#L1-L9
+https://github.com/jjjsmz/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/python/cython/tarai.pyx#L1-L9
 
 ### ビルド
 
@@ -60,7 +60,7 @@ https://github.com/vinyl-umbrella/playground/blob/aa89c993e46e718cf646ce5e38380b
 `setup()` には，ビルド時のオプションとして，`build_ext` と `--inplace` を指定しています．
 これらにより，ビルドしたファイルがカレントディレクトリに出力されます．
 
-https://github.com/vinyl-umbrella/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/python/cython/setup.py#L1-L10
+https://github.com/jjjsmz/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/python/cython/setup.py#L1-L10
 
 `setup.py` を実行するだけでビルドできます！
 また，ビルド時に，どのようにしてビルドしているか出力されます．`gcc` を使っていることや，`-O2` オプション等が指定されていることがわかります．
@@ -124,7 +124,7 @@ print(result)
 
 Python でも同様の竹内関数を実装し，実行時間を比較してみます．
 
-https://github.com/vinyl-umbrella/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/python/cython/sample.py#L1-L27
+https://github.com/jjjsmz/playground/blob/aa89c993e46e718cf646ce5e38380bfc27d3bc52/python/cython/sample.py#L1-L27
 
 ### 実行結果
 
